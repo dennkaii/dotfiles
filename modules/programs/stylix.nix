@@ -8,7 +8,7 @@
 cfg = config.programs.stylix;
 inherit(lib) mkIf mkEnableOption;
 in {
-  options.programs.stylix = mkEnableOption "stylix";
+  options.programs.stylix.enable = mkEnableOption "stylix";
 
   config = mkIf cfg.enable {
     inputs.stylix.url = "github:danth/stylix";
@@ -16,11 +16,11 @@ in {
     hmModules = [ inputs.stylix.homeManagerModules.stylix ];
 
     hm = {
-      wallpaper = config.lib.stylix.mkAnimation {
-      animation = "../../wallpapers/wallaper_1.jpg";
+       stylix = {
+         image = ../../wallpapers/wallapper_1.jpg;
         polarity = "dark";
-        
-      };
+
+      };        
     };
   };
 }

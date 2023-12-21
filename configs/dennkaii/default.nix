@@ -27,6 +27,7 @@
     armcord.enable = true;
     fish.enable = true;
     foot.enable = true;
+    stylix.enable = true;
     };
 
     services = {
