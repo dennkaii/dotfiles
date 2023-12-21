@@ -23,9 +23,13 @@
     schizofox.enable = true;
     ags.enable = true;
     # helix.enable = true;
+    starship.enable = true;
     armcord.enable = true;
     fish.enable = true;
     foot.enable = true;
-    
+    };
+
+    services = {
+      ssh.enable = true;
     };
 }
