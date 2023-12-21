@@ -1,0 +1,105 @@
+{
+  inputs,
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}: let 
+    nixSettings = {
+       # Free up to 20GiB whenever there is less than 5GB left.
+    # this setting is in bytes, so we multiply with 1024 thrice
+    min-free = "${toString (5 * 1024 * 1024 * 1024)}";
+    max-free = "${toString (20 * 1024 * 1024 * 1024)}";
+    # automatically optimise symlinks
+    auto-optimise-store = true;
+
+    sandbox = true;
+    max-jobs = "auto";
+    
+    keep-going = true;
+    log-lines = 30;
+
+    
+    keep-derivations = true;
+    keep-outputs = true;
+
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://cache.privatevoid.net"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
+    ];
+
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
+
+     extra-experimental-features = ["flakes" "nix-command"];
+    
+    };
+
+  in {
+    inputs = {
+      nix-super.url = "github:privatevoid-net/nix-super/ba035e1ea339a97e6ba6a1dd79e0c0e334240234";
+    };
+
+    hm.nix.settings = nixSettings;
+
+    os = {
+        # nixpkgs.overlays = [
+        #   (_: _: {
+        #   nix-super = inputs.nix-super.packages.${pkgs.system}.default;      })
+        # ];
+
+        documentation = {
+          enable = true;
+          doc.enable = true;
+          man.enable = true;
+        };
+        
+    nix = let
+          mappedRegistry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+      in
+    {
+      package = inputs.nix-super.packages.${pkgs.system}.default;
+      
+      registry =
+        mappedRegistry
+        // {
+          default = mappedRegistry.nixpkgs;
+        };
+
+      nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") osConfig.nix.registry;
+
+
+      
+      # make builds run with low priority so my system stays responsive
+     # this is especially helpful if you have auto-upgrade on
+      daemonCPUSchedPolicy = "batch";
+      daemonIOSchedClass = "idle";
+      daemonIOSchedPriority = 7;
+
+      gc = {
+        automatic = true;
+        dates = "Mon *-*-* 03:00";
+        options = "--delete-older-than 7d";
+      };
+
+      optimise = {
+        automatic = true;
+        dates = ["04:00"];
+      };
+
+      settings = nixSettings;
+      };
+    };
+    hm.programs.nix-index.enable = true;
+  }
+

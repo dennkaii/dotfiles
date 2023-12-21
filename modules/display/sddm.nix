@@ -1,0 +1,25 @@
+{
+  pkgs,
+  lib,
+  config,
+  hmConfig,
+  ...
+}:let
+  cfg = config.display.sddm;
+  inherit (lib) mkEnableOption mkIf;
+  in {
+    options.display.sddm = {
+      enable = mkEnableOption "sddm";
+    };
+
+    config = mkIf cfg.enable {
+      os = { 
+        services.xserver = {
+          enable = true;
+          displayManager = {
+            sddm.enable = true;
+          };
+        };
+      };
+    };
+  }
