@@ -20,6 +20,7 @@ in {
     hm = {
       programs.ags = {
         enable = true;
+        configDir = ../ags ;
         
       };
     };

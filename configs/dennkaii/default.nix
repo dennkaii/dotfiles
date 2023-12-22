@@ -33,6 +33,9 @@
 
     games = {
       osu-lazer.enable = true;
+      steam.enable = true;
+      lutris.enable = true;
+
     };
     };
 
