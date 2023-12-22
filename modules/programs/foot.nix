@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }: let 
 cfg = config.programs.foot;
@@ -11,9 +13,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+  inputs.nyxpkgs.url = "github:notashelf/nyxpkgs";
+  
     hm.programs.foot = {
       enable = true;
       server.enable = true;
+      package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
+      
       settings = {
         main = {
           term = "foot";
@@ -28,9 +34,9 @@ in {
           hide-when-typing = true;
         };
 
-        colors = {
-          alpha = 0.2;
-        };
+        # colors = {
+        #   alpha = 0.2;
+        # };
       };
     };
   };

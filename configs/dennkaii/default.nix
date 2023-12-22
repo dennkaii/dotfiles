@@ -28,6 +28,10 @@
     fish.enable = true;
     foot.enable = true;
     stylix.enable = true;
+
+    games = {
+      osu-lazer.enable = true;
+    };
     };
 
     services = {
