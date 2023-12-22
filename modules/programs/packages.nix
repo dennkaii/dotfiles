@@ -32,6 +32,10 @@ in{
 
         #music
         tidal-hifi
+
+        #for hyprland script
+        socat
+        jq
        ];
     };
   };
