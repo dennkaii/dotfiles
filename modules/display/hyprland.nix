@@ -52,8 +52,8 @@
             pamixer = "${pkgs.pamixer}/bin/pamixer";
           in {
              env = mapAttrsToList (name: value: "${name},${toString value}") {
-              XCURSOR_SIZE = 32;
-              GDK_SCALE = 2;
+              XCURSOR_SIZE = 24;
+              GDK_SCALE = 1.3;
               XDG_SESION_TYPE = "wayland";
               GDK_BACKEND = "wayland";
               TERM = "foot";
@@ -61,7 +61,7 @@
             };
 
             monitor = [
-              "eDP-1,highres, auto, 2"
+              "eDP-1,highres, auto, 1.3"
             ];
 
             exec-once = [
