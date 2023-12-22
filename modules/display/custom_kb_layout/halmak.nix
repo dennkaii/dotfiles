@@ -13,9 +13,18 @@ in {
 
   config = mkIf cfg.enable {
     os = {
+
+    services.xserver.xkb = {
+      layout = "halmak";
+    };
       services.xserver.xkb.extraLayouts.halmak = {
-        typesFile = "./types/complete"  ;
-        keycodeFile = "./symbols/halmak";
+      description = "halmak keyboard layout";
+
+        typesFile = ./types/complete ;
+        keycodesFile = ./symbols/halmak;
+        languages = [
+          "eng"
+        ];
       };
     };
     

@@ -7,7 +7,9 @@
   #done both modules
     hyprland.enable = true;
     sddm.enable = true;
-    # greetd.enable = false;
+
+    #Not working for future refence
+    #layout.enable = true;
   };
 
 #wrote
