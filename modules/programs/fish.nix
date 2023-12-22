@@ -23,7 +23,7 @@ in {
     programs.zellij = {
     enable = true;
     settings  = {
-    # default_shell =  "fish";
+     default_shell =  "fish";
       # theme = "default";
       simplified_ui = true;
       pane_frames = false;

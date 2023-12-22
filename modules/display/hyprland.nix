@@ -65,7 +65,8 @@
             ];
 
             exec-once = [
-              "${pkgs.foot}/bin/foot --server"
+              # "${pkgs.foot}/bin/foot --server"
+              "foot --server"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
               "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
             ];
@@ -93,17 +94,17 @@
             decoration = {
               rounding = 1;
               drop_shadow = true;
-              shadow_range = 10;
+              shadow_range = 5;
               shadow_render_power = 2;
                # "col.shadow" = "rgba(00000044)";
-              shadow_offset = "0 0";
+              # shadow_offset = "0 0";
               blur = {
-                enabled = 1;
-                size = 4;
+                enabled = true;
+                size = 5;
                 passes = 4;
-                ignore_opacity = 1;
-                xray = true;
-                new_optimizations = 1;
+                ignore_opacity = true;
+                # xray = true;
+                new_optimizations = true;
                 # noise = 0.03;
                 # contrast = 1.0;
                 };
@@ -174,6 +175,10 @@
 
             misc = {
               disable_autoreload = true;
+              
+              enable_swallow = true; # hide windows that spawn other windows
+              swallow_regex = "foot|footclient"; # windows for which swallow is applied
+
               disable_splash_rendering = true;
               mouse_move_enables_dpms = true;
               key_press_enables_dpms =  true;
@@ -184,7 +189,7 @@
             bind = [
               #Programs related
               "$mod, space, exec, anyrun  "
-              "$mod, return, exec, ${pkgs.foot}/bin/footclient"
+              "$mod, return, exec, footclient"
 
 
               #windows managment related

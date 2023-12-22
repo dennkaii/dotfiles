@@ -17,7 +17,7 @@ in {
   
     hm.programs.foot = {
       enable = true;
-      server.enable = true;
+     # server.enable = true;
       package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
       
       settings = {

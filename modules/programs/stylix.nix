@@ -21,7 +21,7 @@ in {
         polarity = "dark";
 
         opacity = {
-          terminal = 1.0;
+          terminal = 0.85;
         };
 
         base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-dark.yaml";
