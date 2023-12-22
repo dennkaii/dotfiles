@@ -24,8 +24,9 @@ in {
     enable = true;
     settings  = {
     # default_shell =  "fish";
-      theme = "default";
+      # theme = "default";
       simplified_ui = true;
+      pane_frames = false;
       default_layout = "compact";
             };
       #Not working the fish integration hm module

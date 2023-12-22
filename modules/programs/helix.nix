@@ -16,7 +16,7 @@
       package = inputs.helix.packages.${pkgs.system}.default;
 
       settings = {
-        theme = "rose_pine_moon";
+        # theme = "rose_pine_moon";
 
          editor = {
           true-color = true;

@@ -52,7 +52,7 @@
             pamixer = "${pkgs.pamixer}/bin/pamixer";
           in {
              env = mapAttrsToList (name: value: "${name},${toString value}") {
-              XCURSOR_SIZE = 24;
+              XCURSOR_SIZE = 32;
               GDK_SCALE = 2;
               XDG_SESION_TYPE = "wayland";
               GDK_BACKEND = "wayland";
@@ -61,7 +61,7 @@
             };
 
             monitor = [
-              "eDP-1,1920x1080,0x0,1.3"
+              "eDP-1,highres, auto, 2"
             ];
 
             exec-once = [
@@ -78,7 +78,7 @@
               allow_tearing = false;
 
               layout = "dwindle";
-               "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
+               # "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
               
             };
 
@@ -86,20 +86,23 @@
               workspace_back_and_forth = true;
               allow_workspace_cycles = true;
             };
+            xwayland = {
+              force_zero_scaling = true;
+            };
 
             decoration = {
               rounding = 1;
-              drop_shadow = 1;
-              shadow_range = 4;
+              drop_shadow = true;
+              shadow_range = 10;
               shadow_render_power = 2;
-              "col.shadow" = "rgba(00000044)";
+               # "col.shadow" = "rgba(00000044)";
               shadow_offset = "0 0";
               blur = {
                 enabled = 1;
                 size = 4;
                 passes = 4;
                 ignore_opacity = 1;
-                xray = 1;
+                xray = true;
                 new_optimizations = 1;
                 # noise = 0.03;
                 # contrast = 1.0;
