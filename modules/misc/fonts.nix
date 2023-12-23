@@ -20,6 +20,7 @@ in {
       noto-fonts-cjk
       noto-fonts-emoji
       roboto
+      monaspace
       
       (nerdfonts.override { fonts = [ "Mononoki" "JetBrainsMono" "FiraCode"]; })
 
