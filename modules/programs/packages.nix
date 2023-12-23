@@ -29,8 +29,11 @@ in{
         libreoffice-qt
 
 
+        webcord
 
-        #music
+
+
+         #music no worky 
         tidal-hifi
 
         #for hyprland script

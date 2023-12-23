@@ -56,7 +56,6 @@
     hardware = {
       opengl = {
         enable = true;
-        # extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
         extraPackages = with pkgs; [
             intel-media-driver # LIBVA_DRIVER_NAME=iHD
             vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
@@ -64,7 +63,6 @@
             
             libvdpau-va-gl
 
-            mesa.drivers
         ];
       };
     };
