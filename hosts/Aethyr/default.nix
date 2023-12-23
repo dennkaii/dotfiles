@@ -1,14 +1,15 @@
 {
   pkgs,
   osConfig,
-  lib,
-  ...
+  inputs,
+    ...
 }: {
   osModules = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
 
-  # inputs = { nixos-hardware.url = "github:NixOS/nixos-hardware/master";}
+   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     os = {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -47,16 +48,23 @@
     networking = {
       networkmanager.enable = true;
     };
+    
+  #   nixpkgs.config.packageOverrides = pkgs: {
+  #   vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  # };
 
     hardware = {
       opengl = {
         enable = true;
+        # extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
         extraPackages = with pkgs; [
             intel-media-driver # LIBVA_DRIVER_NAME=iHD
             vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
             vaapiVdpau
+            
             libvdpau-va-gl
 
+            mesa.drivers
         ];
       };
     };
@@ -64,6 +72,8 @@
     security.rtkit.enable = true;
 
     services  = {
+    thermald.enable = true;
+    tlp.enable = true;
       # tlp = {enable = true;};
       # wireplumber = true;
       pipewire = {
