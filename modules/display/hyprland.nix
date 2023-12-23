@@ -47,6 +47,7 @@
           package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
           settings = let
+            swww = "${pkgs.swww}/bin/swww";
             playerctl = "${pkgs.playerctl}/bin/playerctl";
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             pamixer = "${pkgs.pamixer}/bin/pamixer";
@@ -66,10 +67,16 @@
 
             exec-once = [
               # "${pkgs.foot}/bin/foot --server"
+              
+              "${swww} init &"
               "foot --server"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
               "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
               "./scripts/dynamic-borders.sh"
+              #wait a bit
+              "sleep 3"
+
+              "${swww} img ${../../wallpapers/6window_V2.jpg}"
             ];
 
             general = {
