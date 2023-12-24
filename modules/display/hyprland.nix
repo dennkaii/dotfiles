@@ -60,6 +60,7 @@
              env = mapAttrsToList (name: value: "${name},${toString value}") {
               XCURSOR_SIZE = 24;
               GDK_SCALE = 1.3;
+              WLR_DRM_NO_ATOMIC = 1;
               XDG_SESION_TYPE = "wayland";
               GDK_BACKEND = "wayland";
               TERM = "foot";
@@ -89,7 +90,7 @@
               gaps_out = 2;
               border_size = 1;
               
-              allow_tearing = false;
+              allow_tearing = true;
 
               layout = "dwindle";
                # "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
@@ -264,6 +265,7 @@
             windowrulev2 = [
               "rounding 0, xwayland:1"
               "float, class:^(leagueclientux.exe)$,title:^(League of Legends)$"
+              "immediate, class:^(osu!)"
             ];
             
           };
