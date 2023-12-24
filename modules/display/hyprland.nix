@@ -265,7 +265,7 @@
             windowrulev2 = [
               "rounding 0, xwayland:1"
               "float, class:^(leagueclientux.exe)$,title:^(League of Legends)$"
-              "immediate, class:^(osu!)"
+              "immediate, class:^(osu\!)$"
             ];
             
           };
