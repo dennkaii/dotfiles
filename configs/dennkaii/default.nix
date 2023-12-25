@@ -15,6 +15,9 @@
 #wrote
   fonts.enable = true;
 
+#virtualmachine bs
+  vm.enable = true;
+
   
   # bitwarden.enable = true;
 
