@@ -17,6 +17,9 @@ in{
       virtualization.libvirtd.enable = true;
       programs.virt-maanger.enable = true;
 
+
+      programs.dconf.enable = true;
+
       
     dconf.settings = {
       "org/virt-manager/virt-manager/connections" = {
