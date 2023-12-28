@@ -31,6 +31,9 @@ in{
 
         webcord
 
+        rar
+        unrar
+
 
 
          #music no worky 

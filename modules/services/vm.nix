@@ -10,23 +10,23 @@ in{
     enable  = mkEnableOption "vm";
   };
 
-  config = mkIf {
+  config = mkIf cfg.enable{
     users.groups = ["libvirtd"];
 
-    os = {
-      virtualization.libvirtd.enable = true;
-      programs.virt-maanger.enable = true;
-
-
-      programs.dconf.enable = true;
-
-      
+    hm  = {       
     dconf.settings = {
       "org/virt-manager/virt-manager/connections" = {
       autoconnect = ["qemu:///system"];
       uris = ["qemu:///system"];
+          };
         };
       };
+
+    os = {
+      virtualisation.libvirtd.enable = true;
+      programs.virt-manager.enable = true;
+
+      programs.dconf.enable = true;
     };
   };
 }
