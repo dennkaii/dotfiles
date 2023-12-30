@@ -46,6 +46,8 @@ in {
 
         gamemode 
         winetricks
+        wineWowPackages.full
+        wine64Packages.full
           ];
         })
 

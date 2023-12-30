@@ -15,6 +15,8 @@
 #wrote
   fonts.enable = true;
 
+  gtk.enable = true;
+
 #virtualmachine bs
   vm.enable = true;
 

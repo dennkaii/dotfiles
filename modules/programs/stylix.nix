@@ -42,10 +42,15 @@ in {
             applications = 11;
             desktop = 11;
           };
-
-          
-          
         };
+
+        cursor = {
+            package = pkgs.google-cursor;
+            size = 24;
+            name = "GoogleDot-White";
+          };
+
+
         override = {
           scheme = "Oxocarbon Dark";
           author = "shaunsingh/IBM";

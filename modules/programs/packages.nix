@@ -21,6 +21,8 @@ in{
     nixpkgs.config.permittedInsecurePackages = [
       "electron-25.9.0"
     ];
+
+    services.gnome.sushi.enable = true;
   };
 
     hm = {
@@ -34,10 +36,13 @@ in{
         rar
         # unrar
 
-
+        gnome.nautilus
 
          #music no worky 
         tidal-hifi
+
+
+        bottles
 
         #for hyprland script
         socat
