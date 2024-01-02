@@ -31,7 +31,7 @@ in {
             };
       #Not working the fish integration hm module
     # enableFishIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
   };
 
   programs.eza = {

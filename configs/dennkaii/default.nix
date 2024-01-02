@@ -28,6 +28,7 @@
     anyrun.enable = true;
     git.enable  = true;
     schizofox.enable = true;
+    uchromium.enable = true;
     ags.enable = true;
     # helix.enable = true;
     starship.enable = true;

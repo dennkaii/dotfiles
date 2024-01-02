@@ -83,6 +83,11 @@
               "sleep 3"
 
               "${swww} img ${../../wallpapers/6window_V2.jpg}"
+
+              "sleep 2"
+
+
+              "[workspace special:term; silent; float;] footclient zellij"
             ];
 
             general = {
@@ -202,8 +207,12 @@
             "$mod"="SUPER";
             bind = [
               #Programs related
-              "$mod, space, exec, anyrun  "
+              "$mod, space, exec, anyrun"
               "$mod, return, exec, footclient"
+              "CTRL,F,exec, floorp"#sec browser
+              "$mod,F,exec, schizofox"#main browser
+              "CTRL, D,exec, armcord"
+              "CTRL, Q, togglespecialworkspace,term"
 
 
               #windows managment related

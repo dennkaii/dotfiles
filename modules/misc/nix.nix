@@ -95,13 +95,14 @@
 
       gc = {
         automatic = true;
-        dates = "Mon *-*-* 03:00";
-        options = "--delete-older-than 7d";
+        dates = "*-*-* 10:00";
+        persistent = true;
+        options = "--delete-older-than 2d";
       };
 
       optimise = {
         automatic = true;
-        dates = ["04:00"];
+        dates = ["11:00"];
       };
 
       settings = nixSettings;

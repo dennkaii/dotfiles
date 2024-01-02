@@ -30,8 +30,10 @@ in{
         obsidian
         libreoffice-qt
 
+        floorp
 
-        webcord
+
+        # webcord
 
         rar
         # unrar
@@ -41,8 +43,13 @@ in{
          #music no worky 
         tidal-hifi
 
+        gimp-with-plugins
+
+        krita
+
 
         bottles
+        gamemode
 
         #for hyprland script
         socat

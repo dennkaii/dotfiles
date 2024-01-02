@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  osConfig,
   inputs,
   ...
 }:let
@@ -18,6 +19,7 @@ in {
     inputs = {
       
     anyrun.url = "github:Kirottu/anyrun";
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options/v2.0.0";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     };
@@ -28,18 +30,34 @@ in {
         enable = true;
 
         config = {
-          closeOnClick = true;
+          closeOnClick = false;
           hidePluginInfo = true;
-          width.fraction = 0.3;
-          y.fraction = 0.3;
+          width.fraction = 0.5;
+          showResultsImmediately = true;
+          y.fraction = 0.2;
+          maxEntries = 3;
          plugins = with inputs.anyrun.packages.${pkgs.system}; [
                     applications
                     rink
                     translate
                     websearch
+                    inputs.anyrun-nixos-options.packages.${pkgs.system}.default
           ];
 
       };
+        extraConfigFiles."nixos-options.ron".text = let
+          nixos-options = osConfig.system.build.manual.optionsJSON + "/share/doc/nixos/options.json";
+          hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
+          options = builtins.toJSON {
+            ":nix" = [nixos-options];
+            ":hm" = [hm-options];
+          };
+        in ''
+          Config(
+            options: ${options},
+          )
+        '';
+        
   extraCss = ''
 
   #window,

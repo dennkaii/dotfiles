@@ -45,9 +45,9 @@ in {
         };
 
         cursor = {
-            package = pkgs.google-cursor;
+            package = pkgs.phinger-cursors;
             size = 24;
-            name = "GoogleDot-White";
+            name = "Phinger Cursors (light)";
           };
 
 
