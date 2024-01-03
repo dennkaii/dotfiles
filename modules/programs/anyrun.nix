@@ -38,6 +38,7 @@ in {
           maxEntries = 3;
          plugins = with inputs.anyrun.packages.${pkgs.system}; [
                     applications
+                    shell
                     rink
                     translate
                     websearch

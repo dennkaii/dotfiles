@@ -1,13 +1,19 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import App from 'resource:///com/github/Aylur/ags/app.js';
+import { notificationPopup } from './notificationsPopups.js';
+import { execAsync, timeout } from 'resource:///com/github/Aylur/ags/utils.js';
 
-const myLabel = Widget.Label({
-    label: 'some example content',
-})
+timeout(100, () => execAsync([
+    'notify-send',
+    'Notification Popup Example',
+    'Lorem ipsum dolor sit amet, qui minim labore adipisicing ' +
+    'minim sint cillum sint consectetur cupidatat.',
+    '-A', 'Cool!',
+    '-i', 'info-symbolic',
+]));
 
-const myBar = Widget.Window({
-    name: 'bar',
-    anchor: ['top', 'left', 'right'],
-    child: myLabel,
-})
-
-export default { windows: [myBar] }
+export default {
+    style: App.configDir + '/style.css',
+    windows: [
+        notificationPopup,
+    ],
+};

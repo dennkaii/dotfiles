@@ -68,7 +68,7 @@
             };
 
             monitor = [
-              "eDP-1,highres, auto, 1.3"
+              "eDP-1,highres, auto, 1.2"
             ];
 
             exec-once = [
@@ -83,6 +83,7 @@
               "sleep 3"
 
               "${swww} img ${../../wallpapers/6window_V2.jpg}"
+              "ags -c ~/.nixConfig/modules/programs/ags/config.js"
 
               "sleep 2"
 

@@ -47,7 +47,7 @@ in {
         cursor = {
             package = pkgs.phinger-cursors;
             size = 24;
-            name = "Phinger Cursors (light)";
+            name = "phinger-cursors";
           };
 
 
