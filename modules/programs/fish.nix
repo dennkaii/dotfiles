@@ -19,6 +19,8 @@ in {
     };
 
     hm = {
+
+    programs.starship.enableFishIntegration = true;
     
     programs.zellij = {
     enable = true;

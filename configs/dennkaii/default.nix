@@ -30,10 +30,15 @@
     schizofox.enable = true;
     uchromium.enable = true;
     ags.enable = true;
+    waybar.enable = true;
     # helix.enable = true;
     starship.enable = true;
     armcord.enable = true;
-    fish.enable = true;
+    
+    # fish.enable = true;
+    
+    nu.enable = true;
+    
     foot.enable = true;
     stylix.enable = true;
 

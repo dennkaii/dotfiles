@@ -43,7 +43,7 @@
       hm = {
 
       home.packages = with pkgs;[
-        swww
+      inputs.hyprcontrib.packages.${pkgs.system}.grimblast        swww
       ];
       
         wayland.windowManager.hyprland = {
@@ -56,6 +56,13 @@
             playerctl = "${pkgs.playerctl}/bin/playerctl";
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             pamixer = "${pkgs.pamixer}/bin/pamixer";
+
+            #stolen from fufexan 
+
+            screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
+
+
+            
           in {
              env = mapAttrsToList (name: value: "${name},${toString value}") {
               XCURSOR_SIZE = 24;
@@ -68,7 +75,7 @@
             };
 
             monitor = [
-              "eDP-1,highres, auto, 1.2"
+              "eDP-1,preferred,0x0, 1"
             ];
 
             exec-once = [
@@ -213,7 +220,21 @@
               "CTRL,F,exec, floorp"#sec browser
               "$mod,F,exec, schizofox"#main browser
               "CTRL, D,exec, armcord"
-              "CTRL, Q, togglespecialworkspace,term"
+              "CTRL SHIFT, Q, togglespecialworkspace,term"
+
+
+              #screenshot 
+              ", Print, exec, ${screenshotarea}"
+              "$mod SHIFT, R, exec, ${screenshotarea}"
+
+
+               "CTRL, Print, exec, grimblast --notify --cursor copysave output"
+               "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
+
+               "ALT, Print, exec, grimblast --notify --cursor copysave screen"
+               "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
+
+
 
 
               #windows managment related

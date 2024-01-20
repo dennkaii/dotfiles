@@ -36,6 +36,7 @@ in {
         xorg.libXinerama
 
         xorg.libXScrnSaver
+        jansson
         libpng
         libpulseaudio
         libvorbis

@@ -25,6 +25,8 @@ in{
     os = {
       virtualisation.libvirtd.enable = true;
       programs.virt-manager.enable = true;
+      
+      virtualisation.spiceUSBRedirection.enable = true;
 
       programs.dconf.enable = true;
     };

@@ -14,7 +14,9 @@ in {
   config = mkIf cfg.enable{
     hm.programs.starship = {
       enable = true;
-      enableFishIntegration = true;
+
+#The integration line is in each shell file 
+      # enableFishIntegration = true;
       #TODO => add custom prompt
 
       settings = {
