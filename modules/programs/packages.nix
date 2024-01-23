@@ -35,6 +35,8 @@ in{
 
         # webcord
 
+        swaynotificationcenter
+
         rar
         # unrar
 

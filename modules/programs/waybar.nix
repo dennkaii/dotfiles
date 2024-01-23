@@ -12,6 +12,8 @@ in {
   config = mkIf cfg.enable{
 
   hm = {
+
+  
     programs.waybar = {
       enable = true;
 

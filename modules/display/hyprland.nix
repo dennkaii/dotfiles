@@ -19,6 +19,12 @@
         hyprland.url = "github:hyprwm/hyprland";
         hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
+
+        hy3 = {
+          url = "github:outfoxxed/hy3";
+          inputs.hyprland.follows = "hyprland";
+        };
+
          hyprcontrib = {
           url = "github:hyprwm/contrib";
           inputs.nixpkgs.follows = "nixpkgs";
@@ -43,14 +49,48 @@
       hm = {
 
       home.packages = with pkgs;[
-      inputs.hyprcontrib.packages.${pkgs.system}.grimblast        swww
+      inputs.hyprcontrib.packages.${pkgs.system}.grimblast 
+      swww
+      wluma
       ];
       
         wayland.windowManager.hyprland = {
           enable = true;
           xwayland.enable = true;
+          plugins = [inputs.hy3.packages.x86_64-linux.hy3 ];
           package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
+
+          extraConfig = ''
+
+          bind = $mod+CONTROL, 1, hy3:focustab, index, 01
+          bind = $mod+CONTROL, 2, hy3:focustab, index, 02
+          bind = $mod+CONTROL, 3, hy3:focustab, index, 03
+          bind = $mod+CONTROL, 4, hy3:focustab, index, 04
+          bind = $mod+CONTROL, 5, hy3:focustab, index, 05
+          bind = $mod+CONTROL, 6, hy3:focustab, index, 06
+          bind = $mod+CONTROL, 7, hy3:focustab, index, 07
+          bind = $mod+CONTROL, 8, hy3:focustab, index, 08
+          bind = $mod+CONTROL, 9, hy3:focustab, index, 09
+          bind = $mod+CONTROL, 0, hy3:focustab, index, 10
+            plugin {
+              hy3 {
+                no_gaps_when_only = true
+
+                tabs {
+                  render_text = false
+                  padding = 4
+                  rounding = 8
+                }
+
+                autotile {
+                  enable = true
+                  trigger_width = 800
+                  trigger_height = 500
+                }
+              }
+            }
+          '';
           settings = let
             swww = "${pkgs.swww}/bin/swww";
             playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -82,6 +122,7 @@
               # "${pkgs.foot}/bin/foot --server"
               
               "${swww} init &"
+              "${pkgs.wluma}/bin/wluma"
               "foot --server"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
               "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
@@ -94,7 +135,7 @@
 
               "sleep 2"
 
-
+              #no worky useless
               "[workspace special:term; silent; float;] footclient zellij"
             ];
 
@@ -105,7 +146,7 @@
               
               allow_tearing = true;
 
-              layout = "dwindle";
+              layout = "hy3";
                # "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
               
             };
@@ -213,24 +254,23 @@
             };
 
             "$mod"="SUPER";
+            "$smod"= "SHIFT+$mod";
+            "$cmod" = "CONTROL+$mod";
+            "$scmod" = "CONTROL+SHIFT+$mod";
             bind = [
               #Programs related
               "$mod, space, exec, anyrun"
               "$mod, return, exec, footclient"
-              "CTRL,F,exec, floorp"#sec browser
-              "$mod,F,exec, schizofox"#main browser
+              "CTRL,F,exec, floorp"
+              "$mod,F,exec, schizofox"
               "CTRL, D,exec, armcord"
-              "CTRL SHIFT, Q, togglespecialworkspace,term"
 
 
               #screenshot 
               ", Print, exec, ${screenshotarea}"
               "$mod SHIFT, R, exec, ${screenshotarea}"
-
-
                "CTRL, Print, exec, grimblast --notify --cursor copysave output"
                "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
-
                "ALT, Print, exec, grimblast --notify --cursor copysave screen"
                "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
 
@@ -238,14 +278,41 @@
 
 
               #windows managment related
-              "$mod, C, killactive,"
               "$mod, SEMICOLON, exit,"
-              "$mod, V, togglefloating,"
-              "$mod, P, pseudo, # dwindle"
-              "$mod, J, togglesplit, # dwindle"
-              "$mod, S, fullscreen,"
-              "$mod,Tab,cyclenext,  "        # change focus to another window
-              "$mod,Tab,bringactivetotop,"   # bring it to the top
+              "$smod, f, fullscreen"
+
+              "$smod, q, hy3:killactive"
+
+
+              "$mod, d, hy3:makegroup, h"
+              "$mod, s, hy3:makegroup, v"
+              "$mod, TAB, hy3:makegroup, tab"
+              "$mod, a, hy3:changefocus, raise"
+              "$smod, a, hy3:changefocus, lower"
+              "$mod, e, hy3:expand, expand"
+              "$smod, e, hy3:expand, base"
+              "$mod, r, hy3:changegroup, opposite"
+              "$scmod, r, hy3:changegroup, toggletab "
+
+              "$mod, h, hy3:movefocus, l"
+              "$mod, j, hy3:movefocus, d"
+              "$mod, k, hy3:movefocus, u"
+              "$mod, l, hy3:movefocus, r"
+
+              "$cmod, h, hy3:movefocus, l, visible"
+              "$cmod, j, hy3:movefocus, d, visible"
+              "$cmod, k, hy3:movefocus, k, visible"
+              "$cmod, l, hy3:movefocus, r, visible"
+
+             "$smod, h, hy3:movewindow, l, once"
+              "$smod, j, hy3:movewindow, d, once"
+              "$smod, k, hy3:movewindow, u, once"
+              "$smod, l, hy3:movewindow, r, once"
+
+               "$scmod, h, hy3:movewindow, l, once, visible"
+              "$scmod, j, hy3:movewindow, d, once, visible"
+              "$scmod, k, hy3:movewindow, u, once, visible"
+              "$scmod, l, hy3:movewindow, r, once, visible"
 
               ",XF86AudioPlay,exec,${playerctl} play-pause"
               ",XF86AudioPrev,exec,${playerctl} previous"

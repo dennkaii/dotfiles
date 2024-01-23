@@ -34,6 +34,7 @@
     # helix.enable = true;
     starship.enable = true;
     armcord.enable = true;
+    mako.enable = true;
     
     # fish.enable = true;
     
