@@ -40,6 +40,8 @@ in{
         rar
         # unrar
 
+        vesktop
+
         gnome.nautilus
 
          #music no worky 

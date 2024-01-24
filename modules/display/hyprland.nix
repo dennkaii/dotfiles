@@ -124,6 +124,7 @@
               "${swww} init &"
               "${pkgs.wluma}/bin/wluma"
               "foot --server"
+              "mako"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
               "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
               "./scripts/dynamic-borders.sh"

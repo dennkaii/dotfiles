@@ -11,7 +11,7 @@ in {
 
   options.programs.mako.enable = mkEnableOption "mako";
 
-  conifg = mkIf cfg.enable {
+  config = mkIf cfg.enable {
 
     hm = {
       services.mako = {

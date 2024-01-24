@@ -23,8 +23,8 @@ in {
           position = "top";
           height = 40;
           modules-left = ["hyprland/workkspaces"];
-          modules-center = ["hyprland/window" "clock"];
-          modules-right  = ["wireplumber" "network" "battery" "tray"];
+          # modules-center = ["hyprland/window" "clock"];
+          modules-right  = [ "clock" "tray"];
 
           "hyprland/workspaces" = {
             disable-scroll = true;
@@ -72,112 +72,112 @@ in {
       };
 
 
-      style = ''
-       * {
-    border: none;
-    border-radius: 16px;
-    font-family: "Torus Nerd Font";
-    font-size: 16px;
-    min-height: 0;
-}
+#       style = ''
+#        * {
+#     border: none;
+#     border-radius: 16px;
+#     font-family: "Torus Nerd Font";
+#     font-size: 16px;
+#     min-height: 0;
+# }
 
-tooltip {
-  background: rgba(0,0,0,0.3);
-}
-tooltip*{
-  background: rgba(0,0,0,0);
-}
+# tooltip {
+#   background: rgba(0,0,0,0.3);
+# }
+# tooltip*{
+#   background: rgba(0,0,0,0);
+# }
 
-window#waybar {
-    background: transparent;
-}
+# window#waybar {
+#     background: transparent;
+# }
 
-#window {
-    font-weight: bold;
-}
+# #window {
+#     font-weight: bold;
+# }
 
-#workspaces {
-    padding: 0 5px;
-}
+# #workspaces {
+#     padding: 0 5px;
+# }
 
-#workspaces button {
-    padding: 0 5px;
-    background: transparent;
-    color: white;
-    border-top: 2px solid transparent;
-}
+# #workspaces button {
+#     padding: 0 5px;
+#     background: transparent;
+#     color: white;
+#     border-top: 2px solid transparent;
+# }
 
-#workspaces button.focused {
-    color: transparent;
-    border-top: 2px solid transparent;
-}
+# #workspaces button.focused {
+#     color: transparent;
+#     border-top: 2px solid transparent;
+# }
 
-#mode {
-    background: transparent;
-    border-bottom: 3px solid transparent;
-}
+# #mode {
+#     background: transparent;
+#     border-bottom: 3px solid transparent;
+# }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-    padding: 0 3px;
-    margin: 0 2px;
-}
+# #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+#     padding: 0 3px;
+#     margin: 0 2px;
+# }
 
-#clock {
-    font-weight: bold;
-}
+# #clock {
+#     font-weight: bold;
+# }
 
-#battery {
-}
+# #battery {
+# }
 
-#battery icon {
-    color: red;
-}
+# #battery icon {
+#     color: red;
+# }
 
-#battery.charging {
-}
+# #battery.charging {
+# }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: black;
-    }
-}
+# @keyframes blink {
+#     to {
+#         background-color: #ffffff;
+#         color: black;
+#     }
+# }
 
-#battery.warning:not(.charging) {
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
+# #battery.warning:not(.charging) {
+#     color: white;
+#     animation-name: blink;
+#     animation-duration: 0.5s;
+#     animation-timing-function: linear;
+#     animation-iteration-count: infinite;
+#     animation-direction: alternate;
+# }
 
-#cpu {
-}
+# #cpu {
+# }
 
-#memory {
-}
+# #memory {
+# }
 
-#network {
-}
+# #network {
+# }
 
-#network.disconnected {
-    background: transparent;
-}
+# #network.disconnected {
+#     background: transparent;
+# }
 
-#pulseaudio {
-}
+# #pulseaudio {
+# }
 
-#pulseaudio.muted {
-}
+# #pulseaudio.muted {
+# }
 
-#mpris {
-    color: rgb(102, 220, 105);
-}
+# #mpris {
+#     color: rgb(102, 220, 105);
+# }
 
-#tray {
-} 
-      '';
+# #tray {
+# } 
+#       '';
 
       
     };
