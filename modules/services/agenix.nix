@@ -1,15 +1,10 @@
 {
-  config,
+  # config,
   inputs,
   ...
 }:
 {
+  inputs.agenix.url = "github:ryantm/agenix";
 
-  config = { 
-   inputs.agenix.url = "github:ryantm/agenix";
-
-  osMoudles = [
-    inputs.agenix.nixosModules.default
-    ];
-  };
+  osModules = [inputs.agenix.nixosModules.default];
 }

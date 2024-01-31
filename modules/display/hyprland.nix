@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.display.hyprland;
-  inherit (lib) mkEnableOption mkOption mkIf mkMerge types mapAttrsToList;
+  inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
  in {
   options.display.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -17,9 +17,7 @@
       inputs = {
       
         hyprland.url = "github:hyprwm/hyprland";
-        hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
-
+        
         hy3 = {
           url = "github:outfoxxed/hy3";
           inputs.hyprland.follows = "hyprland";
@@ -95,7 +93,7 @@
             swww = "${pkgs.swww}/bin/swww";
             playerctl = "${pkgs.playerctl}/bin/playerctl";
             pactl = "${pkgs.pulseaudio}/bin/pactl";
-            pamixer = "${pkgs.pamixer}/bin/pamixer";
+            # pamixer = "${pkgs.pamixer}/bin/pamixer";
 
             #stolen from fufexan 
 
