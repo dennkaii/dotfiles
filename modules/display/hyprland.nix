@@ -281,6 +281,7 @@
               #windows managment related
               "$mod, SEMICOLON, exit,"
               "$smod, f, fullscreen"
+              "$mod, v, togglefloating"
 
               "$smod, q, hy3:killactive"
 

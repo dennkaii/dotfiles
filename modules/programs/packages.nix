@@ -30,10 +30,9 @@ in{
         obsidian
         libreoffice-qt
 
-        floorp
-
-
         # webcord
+
+        floorp
 
         swaynotificationcenter
 
@@ -50,6 +49,8 @@ in{
         gimp-with-plugins
 
         krita
+
+        logseq
 
 
         bottles

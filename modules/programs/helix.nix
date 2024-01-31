@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   inputs,
   lib,
   ...
@@ -20,6 +19,14 @@
 
          editor = {
           true-color = true;
+          auto-save = true;
+          color-modes = true;
+
+          cursor-shape = {
+            insert = "bar";
+            select = "block";
+            normal = "block";
+          };
           lsp = {
             display-inlay-hints = true;
             };
