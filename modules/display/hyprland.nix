@@ -232,7 +232,11 @@
             input = {
               follow_mouse = 1;
               force_no_accel = 1;
+
+              
               kb_layout = "us";
+              kb_options = "grp:alt_shift_toggle";
+              
               sensitivity = 0.5;
 
               touchpad = {
@@ -254,6 +258,7 @@
 
             "$mod"="SUPER";
             "$smod"= "SHIFT+$mod";
+
             "$cmod" = "CONTROL+$mod";
             "$scmod" = "CONTROL+SHIFT+$mod";
             bind = [

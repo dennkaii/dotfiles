@@ -16,8 +16,13 @@
       os = { 
         services.xserver = {
           enable = true;
+
+          desktopManager = {
+          runXdgAutostartIfNone = true; 
+          };
           displayManager = {
             sddm.enable = true;
+            
           };
         };
       };

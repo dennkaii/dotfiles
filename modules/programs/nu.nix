@@ -11,9 +11,8 @@ inherit(lib) mkEnableOption mkIf;
 in{
   options.programs.nu.enable = mkEnableOption "nu";
   config = mkIf cfg.enable {
-   os = {
-    users.defaultUserShell = pkgs.nushell;
-    };
+
+   os.users.defaultUserShell = pkgs.nushell;
 
     hm = {
 
@@ -21,17 +20,11 @@ in{
 
 programs = {
 
-  zoxide = {
-    enable = true;
-  };
-
-  atuin = {
-    enable = true;
-  };
-
-  broot = {
-    enable = true;
-  };
+  zoxide.enable = true;
+  atuin.enable = true;
+  broot.enable = true;
+  carapace.enable = true;
+  yazi.enable = true;
 };
 
 programs.atuin.enableNushellIntegration = true;
@@ -56,7 +49,7 @@ programs.zoxide.enableNushellIntegration = true;
         envFile.source = ./nushell/env.nu;
 
         shellAliases = {
-         updatesys = "sudo nixos-rebuild switch --flake ~/.nixConfig/#Aethyr" ;
+         sysupdate = "sudo nixos-rebuild switch --flake ~/.nixConfig/#Aethyr" ;
         };
 
         

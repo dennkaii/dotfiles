@@ -7,6 +7,7 @@
   #done both modules
     hyprland.enable = true;
     sddm.enable = true;
+    fcitx.enable = true;
 
     #Not working for future refence
     #layout.enable = true;

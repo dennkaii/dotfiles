@@ -36,6 +36,11 @@ in{
 
         swaynotificationcenter
 
+        
+
+        #fetch
+        macchina
+
         rar
         # unrar
 
