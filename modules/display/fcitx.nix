@@ -12,11 +12,12 @@ in {
   options.display.fcitx.enable = mkEnableOption "fcitx";
 
   config = mkIf cfg.enable {
-      os = {
+      hm = {
       i18n.inputMethod = {
         enabled = "fcitx5";
         fcitx5.addons = with pkgs; [
           fcitx5-hangul
+          fcitx5-gtk
         ];
       };    
     };

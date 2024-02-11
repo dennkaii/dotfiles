@@ -42,6 +42,8 @@ in{
         macchina
 
         rar
+
+        kooha
         # unrar
 
         vesktop

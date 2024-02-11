@@ -58,6 +58,10 @@ $env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
 $env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
+$env.GTK_IM_MODULE = "fcitx"
+$env.QT_IM_MODULE = "fcitx"
+$env.XMODIFIERS = "@im=fcitx"
+
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
 # This can be useful if you have a 2-line prompt and it's taking up a lot of space

@@ -133,6 +133,7 @@
               "ags -c ~/.nixConfig/modules/programs/ags/config.js"
 
               "sleep 2"
+              "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
               #no worky useless
               "[workspace special:term; silent; float;] footclient zellij"

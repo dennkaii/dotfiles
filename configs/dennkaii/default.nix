@@ -32,10 +32,12 @@
     uchromium.enable = true;
     ags.enable = true;
     waybar.enable = true;
+    kde.enable = true;
     # helix.enable = true;
     starship.enable = true;
     armcord.enable = true;
     mako.enable = true;
+    obs.enable = true;
     
     # fish.enable = true;
     
