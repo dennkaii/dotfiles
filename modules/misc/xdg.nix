@@ -40,6 +40,7 @@ audioPlayer = ["io.bassi.Amberol"];
   # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
       "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
+      "x-scheme-handler/element" = ["Element"];
       "text/html" = browser;
       "inode/directory" = ["org.gnome.Nautilus"];
       "text/plain" = ["Helix"];
