@@ -39,6 +39,9 @@ in{
         #audio purpouses but i remmeber havinf it installed
         pavucontrol
 
+
+        element-desktop
+
         
 
         #fetch
