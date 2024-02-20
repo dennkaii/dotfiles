@@ -86,6 +86,9 @@
 
       #auto loign for user
        getty.autologinUser = "dennkaii";
+
+      #ags battery
+      upower.enable = true;
     };
   };
 

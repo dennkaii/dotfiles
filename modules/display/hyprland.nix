@@ -50,6 +50,7 @@
       inputs.hyprcontrib.packages.${pkgs.system}.grimblast 
       swww
       wluma
+      satty
       ];
       
         wayland.windowManager.hyprland = {
@@ -98,6 +99,7 @@
             #stolen from fufexan 
 
             screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
+            screensatty = "$satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
 
             
@@ -273,7 +275,7 @@
 
               #screenshot 
               ", Print, exec, ${screenshotarea}"
-              "$mod SHIFT, R, exec, ${screenshotarea}"
+              "$mod SHIFT, R, exec, grimblast --freeze save area - | satty -f- --early-exit --copy-command wl-copy --init-tool rectangle"
                "CTRL, Print, exec, grimblast --notify --cursor copysave output"
                "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
                "ALT, Print, exec, grimblast --notify --cursor copysave screen"

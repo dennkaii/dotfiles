@@ -30,11 +30,14 @@ in{
         obsidian
         libreoffice-qt
 
-        # webcord
+        webcord
 
         floorp
 
         swaynotificationcenter
+
+        #audio purpouses but i remmeber havinf it installed
+        pavucontrol
 
         
 
