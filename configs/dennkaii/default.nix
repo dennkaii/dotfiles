@@ -30,6 +30,10 @@
     git.enable  = true;
     schizofox.enable = true;
     uchromium.enable = true;
+    
+    hyprlock.enable = true;
+    rbw.enable = true;
+    
     ags.enable = true;
     waybar.enable = true;
     kde.enable = true;

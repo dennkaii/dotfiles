@@ -2,6 +2,7 @@
 {
   lib,
   inputs,
+  pkgs,
   config,
   ...
 }:let
@@ -12,29 +13,53 @@ inherit(lib) mkEnableOption mkIf;
   options.programs.hyprlock.enable = mkEnableOption "hyprlock";
 
   config = mkIf cfg.enable{
-    inputs.hyprlock.url = "github:hyprwm/hyprlock/blob/fonts";
+    inputs.hyprlock.url = "github:hyprwm/hyprlock";
 
-    hmModules = [ inputs.hyprlock.homeManagerModules.hyprlock ];
+    # hm.packages =[
+    # inputs.hyprlock.${pkgs.hostPlatform.system}.default  
+    # ];
+
+    # hm.xdg.configFile."hypr/hyprlock.conf".text = ''
+    # general {
+    #   disbale_loading_bar = true
+    # }
+    # background {
+    #   path =~/.nixConfig/wallpapers/lockwallpaper.png
+    # }
+
+    # input-field {
+    #   placeholder_text = <b><i> Guess the pwd...</i></b>
+    # }
+
+    # label {
+    #   text = $TIME
+    # }
+
+    # label {
+    #   text = Who is $USER?
+    # }
+    # '';
+
+    hmModules = [ inputs.hyprlock.homeManagerModules.default ];
 
 
-    hm.hyprlock = {
+    hm.programs.hyprlock = {
       enable = true;
 
-      backgrounds = {
+      background = {
         path = "../../wallpapers/lockwallpaper.png";
         monitor = "";
       };
 
-      input_field = {
-        placeholder_text = "<i><b>Guess the psw...</i></b>";
-      };
+      # input_fields = {
+      #   placeholder_text = "<i><b>Guess the pwd...</i></b>";
+      # };
 
-      label = {
-        text = "<b$TIME</b>/nHello $USER";
-      };
+      # labels = {
+      # text = "<b>$TIME</b>"; 
+      # };
 
-      
-    };
+          };
 
     
     
