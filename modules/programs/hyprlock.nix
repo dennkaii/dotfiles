@@ -46,10 +46,10 @@ inherit(lib) mkEnableOption mkIf;
     hm.programs.hyprlock = {
       enable = true;
 
-      background = {
-        path = "../../wallpapers/lockwallpaper.png";
-        monitor = "";
-      };
+      # background = {
+      #   path = "../../wallpapers/lockwallpaper.png";
+      #   monitor = "";
+      # };
 
       # input_fields = {
       #   placeholder_text = "<i><b>Guess the pwd...</i></b>";

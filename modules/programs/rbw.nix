@@ -1,6 +1,5 @@
 #bitearden unofficial client
 {
-  pkgs,
   config,
   lib,
   ...
@@ -8,11 +7,15 @@
 cfg = config.programs.rbw;
 inherit(lib) mkEnableOption mkIf;
 in {
-  optons.programs.rbw.enable = mkEnableOption "rbw";
+  options.programs.rbw.enable = mkEnableOption "rbw";
 
   config = mkIf cfg.enable {
     hm.programs.rbw = {
       enable = true;
+      settings = {
+        email = "sperezvargas508@gmail.com";
+        pinentry = "gnome3";
+      };
       
     };
   };
