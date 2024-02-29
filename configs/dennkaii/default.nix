@@ -42,6 +42,9 @@
     armcord.enable = true;
     mako.enable = true;
     obs.enable = true;
+
+
+    emacs.enable = true;
     
     # fish.enable = true;
     

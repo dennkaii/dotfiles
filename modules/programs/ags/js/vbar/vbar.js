@@ -3,6 +3,15 @@ import { Widget } from "../../imports.js";
 import { Workspaces } from "./buttons/workspaces.js";
 import { Battery_progress } from "./buttons/battery.js";
 import { sys_tray } from "./buttons/systray.js";
+import clock from "./buttons/clock.js";
+
+
+const left_top = () => Widget.Box({
+  orientation:1,
+  vpack: "start",
+  hpack: "center",
+  child: clock(),
+})
 
 const left_center =() => Widget.Box({
   orientation:1,
@@ -31,7 +40,7 @@ export const vbar = () =>
       class_name:"var",
       orientation: 1,
       spacing: 100,
-      start_widget: Widget.Label("aaaaaaa"),
+      start_widget: left_top(),
       center_widget: left_center(),
       end_widget: left_botttom(),
   }),

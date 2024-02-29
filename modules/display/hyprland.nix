@@ -123,6 +123,7 @@
               
               "${swww} init &"
               "${pkgs.wluma}/bin/wluma"
+              "hyprlock"
               "foot --server"
               "mako"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
@@ -294,6 +295,7 @@
 
               "$mod, d, hy3:makegroup, h"
               "$mod, s, hy3:makegroup, v"
+              "$smod,s  ,exec, hyprlock"
               "$mod, TAB, hy3:makegroup, tab"
               "$mod, a, hy3:changefocus, raise"
               "$smod, a, hy3:changefocus, lower"
