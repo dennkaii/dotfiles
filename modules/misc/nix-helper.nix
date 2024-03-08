@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }:
 {
@@ -10,7 +11,7 @@
       inputs.nh.nixosModules.default
     ];
 
-    os.environment.variables.FLAKE = "/home/dennkaii/.nixConfig";
+    os.environment.variables.FLAKE = "/home/${config.users.main}/.nixConfig";
 
     os.nh = {
     

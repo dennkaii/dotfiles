@@ -26,6 +26,8 @@
           auto-save = true;
           color-modes = true;
           idle-timeout = 1;
+          # indent-guides.render = true;
+          # rulers = [80];
           cursor-shape = {
             insert = "bar";
             select = "block";

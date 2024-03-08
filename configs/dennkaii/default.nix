@@ -1,4 +1,4 @@
-{pkgs, ...}:{
+{...}:{
   users.main = "dennkaii";
 
   # printers.enable = true;
@@ -9,11 +9,10 @@
     sddm.enable = true;
     fcitx.enable = true;
 
-    #Not working for future refence
+    #Not working for future fix
     #layout.enable = true;
   };
 
-#wrote
   fonts.enable = true;
 
   gtk.enable = true;
@@ -44,7 +43,7 @@
     obs.enable = true;
 
 
-    emacs.enable = true;
+    emacs.enable = false;
     
     # fish.enable = true;
     
@@ -63,5 +62,6 @@
 
     services = {
       ssh.enable = true;
+      tailscale.enable = true;
     };
 }

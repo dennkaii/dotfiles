@@ -28,10 +28,10 @@ inherit(lib) mkEnableOption mkIf;
       # path = "/home/dennkaii/.nixConfig/wallpapers/lockwallpaper.png";
         monitor = "";
         color = "rgba(25, 20, 20, 1.0)";
-        # blur_size = 10;
-        # blur_passes = 4;
-        # noise = 0.03;
-        # contrast = 1.0;
+        blur_size = 10;
+        blur_passes = 4;
+        noise = 0.03;
+        contrast = 1.0;
         
         }
       ];
