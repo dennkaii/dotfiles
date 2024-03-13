@@ -295,7 +295,7 @@
 
               "$mod, d, hy3:makegroup, h"
               "$mod, s, hy3:makegroup, v"
-              "$smod,s  ,exec, hyprlock"
+              # "$smod,s  ,exec, hyprlock"
               "$mod, TAB, hy3:makegroup, tab"
               "$mod, a, hy3:changefocus, raise"
               "$smod, a, hy3:changefocus, lower"

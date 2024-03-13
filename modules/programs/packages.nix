@@ -27,14 +27,14 @@ in{
 
     hm = {
       home.packages = with pkgs;[
-        obsidian
+        # obsidian
         libreoffice-qt
 
         webcord
 
         floorp
 
-        swaynotificationcenter
+        # swaynotificationcenter
 
         #audio purpouses but i remmeber havinf it installed
         pavucontrol
@@ -52,22 +52,22 @@ in{
         kooha
         # unrar
 
-        vesktop
+        # vesktop
 
         gnome.nautilus
 
          #music no worky 
         tidal-hifi
 
-        gimp-with-plugins
+        # gimp-with-plugins
 
-        krita
+        # krita
 
         logseq
 
 
-        bottles
-        gamemode
+        # bottles
+        # gamemode
 
         #for hyprland script
         socat

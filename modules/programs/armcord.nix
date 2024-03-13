@@ -1,13 +1,11 @@
 {
-  pkgs,
   lib,
   config,
   inputs,
   ...
 }: let
-cfg = config.programs.armcord;
-inherit(lib) mkEnableOption mkIf;
-
+  cfg = config.programs.armcord;
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.armcord = {
     enable = mkEnableOption "armcord";
@@ -15,10 +13,8 @@ in {
 
   config = mkIf cfg.enable {
     inputs = {
-      armcord-hm = { 
-         url = "github:n3oney/armcord-hm";
-         inputs.nixpkgs.follows = "nixpkgs";
-      }; 
+      armcord-hm.url = ",ithub:n3oney/armcord-hm";
+      armcord-hm.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hmModules = [inputs.armcord-hm.homeManagerModules.default];
@@ -27,7 +23,7 @@ in {
       programs.armcord = {
         enable = true;
         armcordSettings = {
-        # here's mine:
+          # here's mine:
           alternativePaste = false;
           armcordCSP = true;
           automaticPatches = false;

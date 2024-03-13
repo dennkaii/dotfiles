@@ -25,10 +25,17 @@
 
   programs = {
     packages.enable = true;
+
     anyrun.enable = true;
     git.enable  = true;
     schizofox.enable = true;
     uchromium.enable = true;
+
+    neovim.enable = true;
+
+
+    # Not worky
+    discord.enable = false;
     
     hyprlock.enable = true;
     rbw.enable = true;
@@ -36,16 +43,19 @@
     ags.enable = true;
     waybar.enable = true;
     kde.enable = true;
-    # helix.enable = true;
+
     starship.enable = true;
-    armcord.enable = true;
+
+    #obsolte mightr delete
+    armcord.enable = false;
+    
     mako.enable = true;
     obs.enable = true;
 
 
     emacs.enable = false;
     
-    # fish.enable = true;
+    fish.enable = false;
     
     nu.enable = true;
     
