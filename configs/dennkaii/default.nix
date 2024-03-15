@@ -26,6 +26,8 @@
   programs = {
     packages.enable = true;
 
+    
+
     anyrun.enable = true;
     git.enable  = true;
     schizofox.enable = true;
@@ -38,6 +40,9 @@
     discord.enable = false;
     
     hyprlock.enable = true;
+    hypridle.enable = true;
+
+    
     rbw.enable = true;
     
     ags.enable = true;

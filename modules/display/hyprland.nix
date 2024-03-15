@@ -120,7 +120,7 @@
 
             exec-once = [
               # "${pkgs.foot}/bin/foot --server"
-              
+              "hypridle"
               "${swww} init &"
               "${pkgs.wluma}/bin/wluma"
               # "hyprlock"
