@@ -60,6 +60,13 @@
     nu.enable = true;
     
     foot.enable = true;
+    tmux.enable = true;
+
+
+    
+    rio.enable = true;
+
+    
     stylix.enable = true;
 
     games = {

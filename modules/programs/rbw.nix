@@ -4,8 +4,9 @@
   lib,
   ...
 }: let 
-cfg = config.programs.rbw;
-inherit(lib) mkEnableOption mkIf;
+  cfg = config.programs.rbw;
+  inherit(lib) mkEnableOption mkIf;
+
 in {
   options.programs.rbw.enable = mkEnableOption "rbw";
 
@@ -14,7 +15,7 @@ in {
       enable = true;
       settings = {
         email = "sperezvargas508@gmail.com";
-        pinentry = "gnome3";
+        pinentry = "gnome2";
       };
       
     };
