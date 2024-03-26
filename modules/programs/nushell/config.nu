@@ -262,7 +262,7 @@ $env.config = {
                 col_padding: 2
             }
             style: {
-                text: green
+                text: geen
                 selected_text: green_reverse
                 description_text: yellow
             }

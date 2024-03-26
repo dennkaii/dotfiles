@@ -15,6 +15,7 @@ in {
     hmModules = [inputs.hypridle.homeManagerModules.default];
 
     hm.services.hypridle = {
+    enable = true;
 
     lockCmd = "pidof hyprlock || hyprlock";
     afterSleepCmd = "hyprctl dispatch dpms on";

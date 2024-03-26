@@ -27,7 +27,7 @@ inherit(lib) mkEnableOption mkIf;
        {
       path = "";
         monitor = "";
-        color = "rgba(25, 20, 20, 1.0)";
+        # color = "rgba(25, 20, 20, 1.0)";
         blur_size = 3;
         blur_passes = 4;
         noise = 0.03;        

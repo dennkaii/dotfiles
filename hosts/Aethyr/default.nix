@@ -78,10 +78,10 @@
       pipewire = {
         enable = true;
         alsa.enable = true;
-        # alsa.support32bit = true;
+        alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
-        # wireplumber = true;
+        wireplumber.enable = true;
       };
 
       #auto loign for user

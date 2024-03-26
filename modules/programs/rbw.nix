@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let 
   cfg = config.programs.rbw;
@@ -15,7 +16,7 @@ in {
       enable = true;
       settings = {
         email = "sperezvargas508@gmail.com";
-        pinentry = "gnome2";
+        pinentry = pkgs.pinentry-gnome3;
       };
       
     };

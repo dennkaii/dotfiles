@@ -34,6 +34,8 @@ in{
 
         floorp
 
+        nyxt
+
         # swaynotificationcenter
 
         #audio purpouses but i remmeber havinf it installed

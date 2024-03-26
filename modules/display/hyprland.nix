@@ -7,7 +7,7 @@
 }: let
   cfg = config.display.hyprland;
   inherit (lib) mkEnableOption mkIf mkMerge mapAttrsToList;
- in {
+in {
   options.display.hyprland = {
     enable = mkEnableOption "hyprland";
   };
@@ -15,80 +15,75 @@
   config = mkMerge [
     {
       inputs = {
-      
         hyprland.url = "github:hyprwm/hyprland";
-        
+
         hy3 = {
           url = "github:outfoxxed/hy3";
           inputs.hyprland.follows = "hyprland";
         };
 
-         hyprcontrib = {
+        hyprcontrib = {
           url = "github:hyprwm/contrib";
           inputs.nixpkgs.follows = "nixpkgs";
-          };
-          
+        };
       };
     }
 
     (mkIf cfg.enable {
-    
       os = {
         programs.hyprland = {
           enable = true;
         };
 
-         xdg.portal = {
-            enable = true;
-            extraPortals = [pkgs.xdg-desktop-portal-gtk];
-          };  
+        xdg.portal = {
+          enable = true;
+          extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        };
       };
 
       hm = {
+        home.packages = with pkgs; [
+          inputs.hyprcontrib.packages.${pkgs.system}.grimblast
+          swww
+          wluma
+          satty
+        ];
 
-      home.packages = with pkgs;[
-      inputs.hyprcontrib.packages.${pkgs.system}.grimblast 
-      swww
-      wluma
-      satty
-      ];
-      
         wayland.windowManager.hyprland = {
           enable = true;
           xwayland.enable = true;
-          plugins = [inputs.hy3.packages.x86_64-linux.hy3 ];
+          plugins = [inputs.hy3.packages.x86_64-linux.hy3];
           package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-
 
           extraConfig = ''
 
-          bind = $mod+CONTROL, 1, hy3:focustab, index, 01
-          bind = $mod+CONTROL, 2, hy3:focustab, index, 02
-          bind = $mod+CONTROL, 3, hy3:focustab, index, 03
-          bind = $mod+CONTROL, 4, hy3:focustab, index, 04
-          bind = $mod+CONTROL, 5, hy3:focustab, index, 05
-          bind = $mod+CONTROL, 6, hy3:focustab, index, 06
-          bind = $mod+CONTROL, 7, hy3:focustab, index, 07
-          bind = $mod+CONTROL, 8, hy3:focustab, index, 08
-          bind = $mod+CONTROL, 9, hy3:focustab, index, 09
-          bind = $mod+CONTROL, 0, hy3:focustab, index, 10
-            plugin {
-              hy3 {
-                no_gaps_when_only = true
+            bind = $mod+CONTROL, 1, hy3:focustab, index, 01
+            bind = $mod+CONTROL, 2, hy3:focustab, index, 02
+            bind = $mod+CONTROL, 3, hy3:focustab, index, 03
+            bind = $mod+CONTROL, 4, hy3:focustab, index, 04
+            bind = $mod+CONTROL, 5, hy3:focustab, index, 05
+            bind = $mod+CONTROL, 6, hy3:focustab, index, 06
+            bind = $mod+CONTROL, 7, hy3:focustab, index, 07
+            bind = $mod+CONTROL, 8, hy3:focustab, index, 08
+            bind = $mod+CONTROL, 9, hy3:focustab, index, 09
+            bind = $mod+CONTROL, 0, hy3:focustab, index, 10
+              plugin {
+                hy3 {
+                  no_gaps_when_only = 2
 
-                tabs {
-                  render_text = false
-                  padding = 4
-                  rounding = 8
-                }
+                  tabs {
+                    render_text = false
+                    padding = 4
+                    rounding = 8
+                  }
 
-                autotile {
-                  enable = true
-                  trigger_width = 800
-                  trigger_height = 500
+                  autotile {
+                    enable = true
+                    trigger_width = 800
+                    trigger_height = 500
+                  }
                 }
               }
-            }
           '';
           settings = let
             swww = "${pkgs.swww}/bin/swww";
@@ -96,15 +91,12 @@
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             # pamixer = "${pkgs.pamixer}/bin/pamixer";
 
-            #stolen from fufexan 
+            #stolen from fufexan
 
             screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
-            screensatty = "$satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
-
-
-            
+            # screensatty = "$satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
           in {
-             env = mapAttrsToList (name: value: "${name},${toString value}") {
+            env = mapAttrsToList (name: value: "${name},${toString value}") {
               XCURSOR_SIZE = 24;
               GDK_SCALE = 1.3;
               WLR_DRM_NO_ATOMIC = 1;
@@ -128,7 +120,7 @@
               "mako"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
               "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
-              "./scripts/dynamic-borders.sh"
+              # "./scripts/dynamic-borders.sh"
               #wait a bit
               "sleep 3"
 
@@ -138,20 +130,19 @@
               "sleep 2"
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
-              #no worky useless
-              "[workspace special:term; silent; float;] footclient zellij"
+
+              "walker --gapplication-service"
             ];
 
             general = {
               gaps_in = 1;
               gaps_out = 2;
               border_size = 1;
-              
+
               allow_tearing = true;
 
               layout = "hy3";
-               # "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
-              
+              # "col.active_border" =  "rgba(33ccffee) rgba(00ff99ee) 45deg";
             };
 
             binds = {
@@ -167,7 +158,7 @@
               drop_shadow = true;
               shadow_range = 5;
               shadow_render_power = 2;
-               # "col.shadow" = "rgba(00000044)";
+              # "col.shadow" = "rgba(00000044)";
               # shadow_offset = "0 0";
               blur = {
                 enabled = true;
@@ -178,16 +169,16 @@
                 new_optimizations = true;
                 # noise = 0.03;
                 # contrast = 1.0;
-                };
+              };
             };
-            
+
             dwindle = {
               pseudotile = 0;
               force_split = 2;
               preserve_split = 1;
               default_split_ratio = 1.3;
             };
-            
+
             master = {
               new_is_master = false;
               new_on_top = false;
@@ -197,22 +188,21 @@
               always_center_master = false;
             };
 
-
             animation = {
               bezier = [
-#               "smoothOut, 0.36, 0, 0.66, -0.56"
-#               "smoothIn, 0.25, 1, 0.5, 1"
-#               "overshot, 0.4, 0.8, 0.2, 1.2" 
+                #               "smoothOut, 0.36, 0, 0.66, -0.56"
+                #               "smoothIn, 0.25, 1, 0.5, 1"
+                #               "overshot, 0.4, 0.8, 0.2, 1.2"
 
-              "fluent_decel, 0, 0.2, 0.4, 1"
-              " easeOutCirc, 0, 0.55, 0.45, 1"
-              "easeOutCubic, 0.33, 1, 0.68, 1"
-              "easeinoutsine, 0.37, 0, 0.63, 1"
+                "fluent_decel, 0, 0.2, 0.4, 1"
+                " easeOutCirc, 0, 0.55, 0.45, 1"
+                "easeOutCubic, 0.33, 1, 0.68, 1"
+                "easeinoutsine, 0.37, 0, 0.63, 1"
               ];
 
               animation = [
-               #window opem
-                "windowsIn, 1, 3, easeOutCubic, popin 30%" 
+                #window opem
+                "windowsIn, 1, 3, easeOutCubic, popin 30%"
 
                 # window close
                 "windowsOut, 1, 3, fluent_decel, popin 70%"
@@ -220,7 +210,7 @@
                 "windowsMove, 1, 2, easeinoutsine, slide"
                 #fade in open -> layers and windows
                 "fadeIn, 1, 3, easeOutCubic"
-                 # fade out (close) -> layers and windows
+                # fade out (close) -> layers and windows
                 "fadeOut, 1, 1.7, easeOutCubic"
                 #face on changin active window and opacity
                 "fadeSwitch, 0, 1, easeOutCirc"
@@ -229,7 +219,7 @@
                 "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
                 "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
                 "workspaces, 1, 3, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
-                #STOLEN FROM :https://discord.com/channels/961691461554950145/1162860692978794627 
+                #STOLEN FROM :https://discord.com/channels/961691461554950145/1162860692978794627
               ];
             };
 
@@ -237,10 +227,9 @@
               follow_mouse = 1;
               force_no_accel = 1;
 
-              
               kb_layout = "us";
-              kb_options = "grp:alt_shift_toggle";
-              
+              kb_options = "grp:alt_shift_toggle, ctrl:nocaps";
+
               sensitivity = 0.5;
 
               touchpad = {
@@ -250,48 +239,44 @@
 
             misc = {
               disable_autoreload = true;
-              
+
               enable_swallow = true; # hide windows that spawn other windows
               swallow_regex = "foot|footclient"; # windows for which swallow is applied
 
               disable_splash_rendering = true;
               mouse_move_enables_dpms = true;
-              key_press_enables_dpms =  true;
+              key_press_enables_dpms = true;
               disable_hyprland_logo = true;
             };
 
-            "$mod"="SUPER";
-            "$smod"= "SHIFT+$mod";
+            "$mod" = "SUPER";
+            "$smod" = "SHIFT+$mod";
 
             "$cmod" = "CONTROL+$mod";
             "$scmod" = "CONTROL+SHIFT+$mod";
             bind = [
               #Programs related
               "$mod, space, exec, anyrun"
+              # "$mod, space, exec, walker"
               "$mod, return, exec, footclient"
               "CTRL,F,exec, floorp"
               "$mod,F,exec, schizofox"
               "CTRL, D,exec, armcord"
 
-
-              #screenshot 
+              #screenshot
               ", Print, exec, ${screenshotarea}"
               "$mod SHIFT, R, exec, grimblast --freeze save area - | satty -f- --early-exit --copy-command wl-copy --init-tool rectangle"
-               "CTRL, Print, exec, grimblast --notify --cursor copysave output"
-               "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
-               "ALT, Print, exec, grimblast --notify --cursor copysave screen"
-               "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
-
-
-
+              "CTRL, Print, exec, grimblast --notify --cursor copysave output"
+              "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
+              "ALT, Print, exec, grimblast --notify --cursor copysave screen"
+              "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
 
               #windows managment related
-              "$mod, SEMICOLON, exit,"
+              # "$mod, SEMICOLON, exit,"
               "$smod, f, fullscreen"
               "$mod, v, togglefloating"
 
               "$smod, q, hy3:killactive"
-
 
               "$mod, d, hy3:makegroup, h"
               "$mod, s, hy3:makegroup, v"
@@ -314,12 +299,12 @@
               "$cmod, k, hy3:movefocus, k, visible"
               "$cmod, l, hy3:movefocus, r, visible"
 
-             "$smod, h, hy3:movewindow, l, once"
+              "$smod, h, hy3:movewindow, l, once"
               "$smod, j, hy3:movewindow, d, once"
               "$smod, k, hy3:movewindow, u, once"
               "$smod, l, hy3:movewindow, r, once"
 
-               "$scmod, h, hy3:movewindow, l, once, visible"
+              "$scmod, h, hy3:movewindow, l, once, visible"
               "$scmod, j, hy3:movewindow, d, once, visible"
               "$scmod, k, hy3:movewindow, u, once, visible"
               "$scmod, l, hy3:movewindow, r, once, visible"
@@ -331,16 +316,16 @@
               # WORKSPACE MOVEMENT
               "${builtins.concatStringsSep "\n" (builtins.genList (
                   x: let
-                  ws = let
-                  c = (x + 1) / 10;
+                    ws = let
+                      c = (x + 1) / 10;
                     in
-              builtins.toString (x + 1 - (c * 10)); 
-              in
-              '' 
-              bind = $mod, ${ws}, workspace, ${toString (x +1)}
-              bind = $modSHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
-              '')
-              10)}"
+                      builtins.toString (x + 1 - (c * 10));
+                  in ''
+                    bind = $mod, ${ws}, workspace, ${toString (x + 1)}
+                    bind = $modSHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+                  ''
+                )
+                10)}"
 
               #change focus keys
               "$mod, left, movefocus, h"
@@ -348,21 +333,18 @@
               "$mod, up, movefocus, k"
               "$mod, down, movefocus, j"
 
-
-
               #resize submad prolly
-              
             ];
             binde = [
-            ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5% && ${pactl} get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK"
-            ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5% && ${pactl} get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK"
+              ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5% && ${pactl} get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK"
+              ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5% && ${pactl} get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK"
             ];
 
             bindm = [
               "$mod,mouse:272,movewindow"
               "$mod,mouse:273,resizewindow"
             ];
-            
+
             windowrule = [
               "center,^(leagueclientux.exe)$"
               "center,^(league of legends.exe)$"
@@ -373,9 +355,8 @@
             windowrulev2 = [
               "rounding 0, xwayland:1"
               "float, class:^(leagueclientux.exe)$,title:^(League of Legends)$"
-              "immediate, class:^(osu\!)$"
+              # "immediate, class:^(osu\!)$"
             ];
-            
           };
         };
       };

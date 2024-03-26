@@ -18,7 +18,7 @@ in {
     hm.programs.foot = {
       enable = true;
      # server.enable = true;
-      package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
+      # package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
       
       settings = {
         main = {
@@ -33,10 +33,6 @@ in {
         mouse = {
           hide-when-typing = true;
         };
-
-        # colors = {
-        #   alpha = 0.2;
-        # };
       };
     };
   };
