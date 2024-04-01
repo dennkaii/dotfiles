@@ -21,7 +21,7 @@ in {
         polarity = "dark";
 
         opacity = {
-          terminal = 0.75;
+          terminal = 0.97;
         };
 
         targets = {
@@ -30,16 +30,16 @@ in {
 
         fonts = {
           serif = {
-            name = "Monaspace Neon";
-            package = pkgs.monaspace;
+            name = "Liga SFMono Nerd Font";
+            package = pkgs.sf-mono-liga-bin;
           };
           sansSerif = {
-            name = "Fira Code";
-            package = pkgs.fira-code;
+            name = "Liga SFMono Nerf Font";
+            package = pkgs.sf-mono-liga-bin;
           };
           monospace = {
-            name = "Monaspace Argon";
-            package = pkgs.monaspace;
+            name = "Liga SFMono Nerd Font";
+            package = pkgs.sf-mono-liga-bin;
           };
 
           sizes = {

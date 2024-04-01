@@ -4,22 +4,22 @@
   inputs,
   pkgs,
   ...
-}: let 
-cfg = config.programs.foot;
-inherit (lib) mkEnableOption mkIf;
+}: let
+  cfg = config.programs.foot;
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.foot = {
     enable = mkEnableOption "foot";
   };
 
   config = mkIf cfg.enable {
-  inputs.nyxpkgs.url = "github:notashelf/nyxpkgs";
-  
+    inputs.nyxpkgs.url = "github:notashelf/nyxpkgs";
+
     hm.programs.foot = {
       enable = true;
-     # server.enable = true;
-      # package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
-      
+      # server.enable = true;
+      package = inputs.nyxpkgs.packages.${pkgs.hostPlatform.system}.foot-transparent;
+
       settings = {
         main = {
           term = "foot";

@@ -11,13 +11,15 @@ in {
     programs.hyprpaper.enable = mkEnableOption "hyprpaper";
 
     wallpaper_dir = lib.mkOption {
-      type = with lib.types; path;
-      description = ''Wallpapaer path'';
+      type = with lib.types; str;
+      description = ''
+      Wallpapaer path
+      '';
     };
   };
 
   config = mkIf cfg.enable {
-    inputs.hyprpaper = "github:hyprwm/hyprpaper";
+    inputs.hyprpaper.url = "github:hyprwm/hyprpaper";
 
     hmModules = [inputs.hyprpaper.homeManagerModules.default];
 

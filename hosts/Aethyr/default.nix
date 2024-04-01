@@ -2,6 +2,7 @@
   pkgs,
   osConfig,
   inputs,
+  config,
     ...
 }: {
   osModules = [
@@ -85,7 +86,8 @@
       };
 
       #auto loign for user
-       getty.autologinUser = "dennkaii";
+       # getty.autologinUser = "${config.users.main}";
+    
 
       #ags battery
       upower.enable = true;

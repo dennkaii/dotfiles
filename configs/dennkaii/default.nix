@@ -1,11 +1,12 @@
-{...}: {
+{config,...}: {
   users.main = "dennkaii";
 
-  wallpaper_dir = ../../wallpapers ;
+  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers";
+  
   
   display = {
     hyprland.enable = true;
-    sddm.enable = true;
+    sddm.enable = false;
     fcitx.enable = true;
 
   };
@@ -32,8 +33,9 @@
 
     neovim.enable = false;
 
+
     # Not worky
-    discord.enable = false;
+    discord.enable = true;
 
     hyprlock.enable = true;
     hypridle.enable = true;
@@ -62,12 +64,18 @@
     games = {
       osu-lazer.enable = true;
       steam.enable = true;
+      minecraft.enable = true;
       lutris.enable = true;
     };
   };
 
   services = {
     ssh.enable = true;
-    tailscale.enable = true;
+    tailscale.enable = false;
+    protonvpn.enable = true;
+
+
+    podman.enable = true;
+    docker.enable = true;
   };
 }

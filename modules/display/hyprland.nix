@@ -86,7 +86,7 @@ in {
               }
           '';
           settings = let
-            swww = "${pkgs.swww}/bin/swww";
+            # swww = "${pkgs.swww}/bin/swww";
             playerctl = "${pkgs.playerctl}/bin/playerctl";
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             # pamixer = "${pkgs.pamixer}/bin/pamixer";
@@ -113,9 +113,9 @@ in {
             exec-once = [
               # "${pkgs.foot}/bin/foot --server"
               "hypridle"
-              "${swww} init &"
+              # "${swww} init &"
               "${pkgs.wluma}/bin/wluma"
-              # "hyprlock"
+              "hyprlock"
               "foot --server"
               "mako"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
@@ -124,7 +124,7 @@ in {
               #wait a bit
               "sleep 3"
 
-              "${swww} img ${../../wallpapers/6window_V2.jpg}"
+              # "${swww} img ${../../wallpapers/6window_V2.jpg}"
               "ags -c ~/.nixConfig/modules/programs/ags/config.js"
 
               "sleep 2"
@@ -256,9 +256,10 @@ in {
             "$scmod" = "CONTROL+SHIFT+$mod";
             bind = [
               #Programs related
-              "$mod, space, exec, anyrun"
-              # "$mod, space, exec, walker"
-              "$mod, return, exec, footclient"
+              # "$mod, space, exec, anyrun"
+              "$mod, space, exec, walker"
+              # Launches foot with a tmux sesison -> got it from https://discord.com/channels/601130461678272522/1136357112579108904
+              "$mod, return, exec, footclient nu --commands '$env.SHELL = $nu.current-exe; tmux new-session -A -s default' "
               "CTRL,F,exec, floorp"
               "$mod,F,exec, schizofox"
               "CTRL, D,exec, armcord"

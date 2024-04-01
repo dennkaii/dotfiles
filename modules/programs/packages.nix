@@ -30,6 +30,10 @@ in{
         # obsidian
         libreoffice-qt
 
+        ani-cli
+
+        pueue
+
         webcord
 
         floorp
@@ -43,6 +47,7 @@ in{
 
 
         element-desktop
+        cinny-desktop
 
         
 

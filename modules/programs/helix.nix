@@ -210,13 +210,34 @@
       };
 
       languages = {
+        language = [
+          {
+            name = "markdown";
+            auto-format = true;
+          }
+
+          {
+            name = "nix";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.alejandra;};
+            roots = ["flake.nix"];
+          }
+        ];
+
         language-server = {
+          markdown-oxide = {
+            command = lib.getExe pkgs.markdown-oxide;
+          };
           #stolen from n3oney
           typescript-language-server = {
             command = lib.getExe pkgs.nodePackages.typescript-language-server;
             args = ["--stdio"];
             config.hostInfo = "helix";
             config.documentFormatting = false;
+          };
+
+          vscode-langservers-extracted = {
+            command = lib.getExe pkgs.nodePackages.vscode-langservers-extracted;
           };
 
           vscode-css-language-server = {

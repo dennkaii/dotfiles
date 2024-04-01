@@ -25,7 +25,7 @@ inherit(lib) mkEnableOption mkIf;
 
       backgrounds = [
        {
-      path = "";
+      path = "${config.wallpaper_dir}/moto_girl.png";
         monitor = "";
         # color = "rgba(25, 20, 20, 1.0)";
         blur_size = 3;

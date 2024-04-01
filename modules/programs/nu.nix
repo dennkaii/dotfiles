@@ -14,6 +14,7 @@ in{
 
    os.users.defaultUserShell = pkgs.nushell;
 
+
     hm = {
 
 # programs.starship.enableNushellIntegration = true;

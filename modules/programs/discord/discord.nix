@@ -7,28 +7,37 @@
   cfg = config.programs.discord;
   inherit (lib) mkEnableOption mkIf;
 in {
-  options.programs.discord.enable = mkEnableOption "discord";
+  options.programs.discord = {
+   enable = mkEnableOption "discord";
+   package = lib.mkOption {
+      default = pkgs.vesktop;
+    };
+    finalPackage = lib.mkOption {
+      readOnly = true;
+      default = cfg.package.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [./readonlyFix.patch];
+        postFixup = ''
+          wrapProgram $out/bin/${cfg.package.meta.mainProgram or (lib.getName cfg.package)} \
+            --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland"
+        '';
+      });
+    };
+  };
 
   config.hm = mkIf cfg.enable {
     home.packages = [
-      (pkgs.vesktop.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [./readonlyFix.patch];
-        postFixup = ''
-          wrapProgram $out/bin/vencorddesktop \
-            --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland"
-        '';
-      }))
+    cfg.finalPackage
     ];
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings.json".text = builtins.toJSON {
-      discordBranch = "canary";
-      firstLaunch = false;
-      arRPC = "on";
-      splashColor = "rgb(219, 222, 225)";
-      splashBackground = "rgb(49, 51, 56)";
-      enableMenu = false;
-      staticTitle = false;
-      # transparencyOption = "I love NixOS";
+    discordBranch = "canary";
+    firstLaunch = false;
+    arRPC = "on";
+    # splashColor = "rgb(219, 222, 225)";
+    # splashBackground = "rgb(49, 51, 56)";
+     enableMenu = false;
+    staticTitle = false;
+    # transparencyOption = "I love NixOS";
     };
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings/settings.json".text = builtins.toJSON {
@@ -36,7 +45,7 @@ in {
       autoUpdate = false;
       autoUpdateNotification = false;
       useQuickCss = true;
-      # themeLinks = [];
+      themeLinks = ["Oxocarbon-theme.css"];
       enableReactDevtools = true;
       frameless = false;
       transparent = true;
