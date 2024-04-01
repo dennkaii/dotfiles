@@ -29,7 +29,8 @@
             ":"
             (lib.makeBinPath [
               clang-tools
-              marksman
+              markdown-oxide
+              ltex-ls
               nil
               luajitPackages.lua-lsp
               nodePackages.bash-language-server
@@ -59,7 +60,7 @@
           auto-save = true;
           auto-info = true;
           color-modes = true;
-          idle-timeout = 1;
+          idle-timeout = 250;
           indent-guides.render = true;
           rulers = [100];
           cursor-shape = {
@@ -214,6 +215,7 @@
           {
             name = "markdown";
             auto-format = true;
+            language-servers = ["markdown-oxide" "ltex-ls"];
           }
 
           {
@@ -225,6 +227,9 @@
         ];
 
         language-server = {
+          ltex-ls = {
+            command = lib.getExe pkgs.ltex-ls;
+          };
           markdown-oxide = {
             command = lib.getExe pkgs.markdown-oxide;
           };
