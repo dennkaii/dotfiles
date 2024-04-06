@@ -1,14 +1,12 @@
-{config,...}: {
+{config, ...}: {
   users.main = "dennkaii";
 
   wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers";
-  
-  
+
   display = {
     hyprland.enable = true;
     sddm.enable = false;
     fcitx.enable = true;
-
   };
 
   fonts.enable = true;
@@ -17,7 +15,6 @@
 
   #virtualmachine bs
   vm.enable = true;
-
 
   programs = {
     packages.enable = true;
@@ -28,11 +25,13 @@
     walker.enable = true;
     git.enable = true;
 
+    # the nix pkgs ver is outdated and i dont see how to fetch it to make it?
+    radicle.enable = false;
+
     schizofox.enable = true;
     uchromium.enable = true;
 
     neovim.enable = false;
-
 
     # Not worky
     discord.enable = true;
@@ -73,7 +72,6 @@
     ssh.enable = true;
     tailscale.enable = false;
     protonvpn.enable = true;
-
 
     podman.enable = true;
     docker.enable = true;

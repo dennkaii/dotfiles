@@ -1,22 +1,19 @@
-
 {
   lib,
   inputs,
   pkgs,
   config,
   ...
-}:let
-cfg = config.programs.hyprlock;
-inherit(lib) mkEnableOption mkIf;
-
- in {
+}: let
+  cfg = config.programs.hyprlock;
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.programs.hyprlock.enable = mkEnableOption "hyprlock";
 
-  config = mkIf cfg.enable{
+  config = mkIf cfg.enable {
     inputs.hyprlock.url = "github:hyprwm/hyprlock";
 
-    hmModules = [ inputs.hyprlock.homeManagerModules.default ];
-
+    hmModules = [inputs.hyprlock.homeManagerModules.default];
 
     hm.programs.hyprlock = {
       enable = true;
@@ -24,13 +21,13 @@ inherit(lib) mkEnableOption mkIf;
       general.hide_cursor = false;
 
       backgrounds = [
-       {
-      path = "${config.wallpaper_dir}/moto_girl.png";
-        monitor = "";
-        # color = "rgba(25, 20, 20, 1.0)";
-        blur_size = 3;
-        blur_passes = 4;
-        noise = 0.03;        
+        {
+          path = "${config.wallpaper_dir}/gir_red_bg.png";
+          monitor = "";
+          # color = "rgba(25, 20, 20, 1.0)";
+          blur_size = 3;
+          blur_passes = 4;
+          noise = 0.03;
         }
       ];
 
@@ -40,7 +37,7 @@ inherit(lib) mkEnableOption mkIf;
 
           # placeholder_text = "<b>Do you know me?</b>";
           dots_center = true;
-          dots_spacing  = 0.3;
+          dots_spacing = 0.3;
           fade_on_empty = true;
         }
       ];
@@ -52,25 +49,21 @@ inherit(lib) mkEnableOption mkIf;
 
           position = {
             x = 0;
-            y =  100;
+            y = 100;
           };
 
           valign = "center";
           halign = "center";
         }
-        ];
+      ];
 
       # input_fields = {
       #   placeholder_text = "<i><b>Guess the pwd...</i></b>";
       # };
 
       # labels = {
-      # text = "<b>$TIME</b>"; 
+      # text = "<b>$TIME</b>";
       # };
-
-          };
-
-    
-    
+    };
   };
 }

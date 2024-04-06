@@ -13,7 +13,7 @@ in {
     wallpaper_dir = lib.mkOption {
       type = with lib.types; str;
       description = ''
-      Wallpapaer path
+        Wallpapaer path
       '';
     };
   };
@@ -27,10 +27,10 @@ in {
       enable = true;
 
       wallpapers = [
-        "eDP-1,${config.wallpaper_dir}/moto_girl.png"
+        "eDP-1,${config.wallpaper_dir}/gir_red_bg.png"
       ];
       preloads = [
-        "${config.wallpaper_dir}/moto_girl.png"
+        "${config.wallpaper_dir}/gir_red_bg.png"
       ];
     };
   };

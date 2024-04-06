@@ -8,8 +8,8 @@
   inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.discord = {
-   enable = mkEnableOption "discord";
-   package = lib.mkOption {
+    enable = mkEnableOption "discord";
+    package = lib.mkOption {
       default = pkgs.vesktop;
     };
     finalPackage = lib.mkOption {
@@ -26,18 +26,18 @@ in {
 
   config.hm = mkIf cfg.enable {
     home.packages = [
-    cfg.finalPackage
+      cfg.finalPackage
     ];
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings.json".text = builtins.toJSON {
-    discordBranch = "canary";
-    firstLaunch = false;
-    arRPC = "on";
-    # splashColor = "rgb(219, 222, 225)";
-    # splashBackground = "rgb(49, 51, 56)";
-     enableMenu = false;
-    staticTitle = false;
-    # transparencyOption = "I love NixOS";
+      discordBranch = "canary";
+      firstLaunch = false;
+      arRPC = "on";
+      # splashColor = "rgb(219, 222, 225)";
+      # splashBackground = "rgb(49, 51, 56)";
+      enableMenu = false;
+      staticTitle = false;
+      # transparencyOption = "I love NixOS";
     };
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings/settings.json".text = builtins.toJSON {

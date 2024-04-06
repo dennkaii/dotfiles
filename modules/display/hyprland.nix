@@ -108,6 +108,7 @@ in {
 
             monitor = [
               "eDP-1,preferred,0x0, 1"
+              ",preferred,auto, 1, mirror, eDP-1"
             ];
 
             exec-once = [
@@ -129,7 +130,6 @@ in {
 
               "sleep 2"
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-
 
               "walker --gapplication-service"
             ];
@@ -190,35 +190,25 @@ in {
 
             animation = {
               bezier = [
-                #               "smoothOut, 0.36, 0, 0.66, -0.56"
-                #               "smoothIn, 0.25, 1, 0.5, 1"
-                #               "overshot, 0.4, 0.8, 0.2, 1.2"
-
-                "fluent_decel, 0, 0.2, 0.4, 1"
-                " easeOutCirc, 0, 0.55, 0.45, 1"
+                "easeOutCirc, 0, 0.55, 0.45, 1"
                 "easeOutCubic, 0.33, 1, 0.68, 1"
                 "easeinoutsine, 0.37, 0, 0.63, 1"
+                "linear, 0, 0, 1, 1"
+                "md3_standard, 0.2, 0, 0, 1"
+                "md3_decel, 0.05, 0.7, 0.1, 1"
+                "md3_accel, 0.3, 0, 0.8, 0.15"
+                "overshot, 0.05, 0.9, 0.1, 1.1"
+                "crazyshot, 0.1, 1.5, 0.76, 0.92 "
+                "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
+                "fluent_decel, 0.1, 1, 0, 1"
+                "easeInOutCirc, 0.85, 0, 0.15, 1"
+                "easeOutCirc, 0, 0.55, 0.45, 1"
+                "easeOutExpo, 0.16, 1, 0.3, 1"
+                "softAcDecel, 0.26, 0.26, 0.15, 1"
               ];
 
               animation = [
-                #window opem
-                "windowsIn, 1, 3, easeOutCubic, popin 30%"
-
-                # window close
-                "windowsOut, 1, 3, fluent_decel, popin 70%"
-                #window moving,draggin,etc
-                "windowsMove, 1, 2, easeinoutsine, slide"
-                #fade in open -> layers and windows
-                "fadeIn, 1, 3, easeOutCubic"
-                # fade out (close) -> layers and windows
-                "fadeOut, 1, 1.7, easeOutCubic"
-                #face on changin active window and opacity
-                "fadeSwitch, 0, 1, easeOutCirc"
-                "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
-                "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
-                "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
-                "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
-                "workspaces, 1, 3, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
+                "windows, 1,7,hyprnostretch, slide"
                 #STOLEN FROM :https://discord.com/channels/961691461554950145/1162860692978794627
               ];
             };

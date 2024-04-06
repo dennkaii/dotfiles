@@ -211,12 +211,26 @@
       };
 
       languages = {
-        language = [
-          {
-            name = "markdown";
+        language = let
+          withLangServers = lang: servers:
+            lang
+            // {
+              language-servers = (lang.language-servers or []) ++ servers;
+            };
+          mkPrettier = name: ext: {
+            inherit name;
             auto-format = true;
-            language-servers = ["markdown-oxide" "ltex-ls"];
-          }
+            formatter = {
+              command = "${pkgs.prettierd}/bin/prettierd";
+              args = ["file.${ext}"];
+            };
+          };
+        in [
+          # {
+          # name = "markdown";
+          # auto-format = true;
+          # language-servers = ["markdown-oxide" "ltex-ls"];
+          # }
 
           {
             name = "nix";
@@ -224,11 +238,21 @@
             formatter = {command = lib.getExe pkgs.alejandra;};
             roots = ["flake.nix"];
           }
+          {
+            name = "html";
+            auto-format = true;
+            language-servers = ["emmet-ls" "vscode-html-server"];
+          }
+          (withLangServers (mkPrettier "markdown" "md") ["markdown-oxide" "emmet-ls" "ltex-ls"])
         ];
 
         language-server = {
           ltex-ls = {
             command = lib.getExe pkgs.ltex-ls;
+          };
+          emmet-ls = {
+            command = lib.getExe pkgs.emmet-language-server;
+            args = ["--stdio"];
           };
           markdown-oxide = {
             command = lib.getExe pkgs.markdown-oxide;
@@ -249,6 +273,11 @@
             command = lib.getExe pkgs.nodePackages.vscode-css-languageserver-bin;
             args = ["--stdio"];
             config.provideFormatter = true;
+          };
+
+          vscode-html-language-server = {
+            command = lib.getExe pkgs.nodePackages.vscode-html-languageserver-bin;
+            args = ["--stdio"];
           };
 
           qml-lamguage-server = {
