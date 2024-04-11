@@ -250,9 +250,9 @@ in {
               "$mod, space, exec, walker"
               # Launches foot with a tmux sesison -> got it from https://discord.com/channels/601130461678272522/1136357112579108904
               "$mod, return, exec, footclient nu --commands '$env.SHELL = $nu.current-exe; tmux new-session -A -s default' "
-              "CTRL,F,exec, floorp"
-              "$mod,F,exec, schizofox"
-              "CTRL, D,exec, armcord"
+              "CTRL,F,exec, floorp "
+              "$cmod,F, exec, nyxt"
+              "CTRL, D,exec, ferdium"
 
               #screenshot
               ", Print, exec, ${screenshotarea}"

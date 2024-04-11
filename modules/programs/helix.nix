@@ -42,7 +42,7 @@
               black
               alejandra
               shellcheck
-              kdePackages.qtdeclarative
+              # kdePackages.qtdeclarative
             ])
           ];
       });
@@ -280,11 +280,11 @@
             args = ["--stdio"];
           };
 
-          qml-lamguage-server = {
-            command = lib.getExe pkgs.kdePackages.qtdeclarative;
-            args = ["--stdio"];
-            conifg.provideFormatter = true;
-          };
+          # qml-lamguage-server = {
+          # command = lib.getExe pkgs.kdePackages.qtdeclarative;
+          # args = ["--stdio"];
+          # conifg.provideFormatter = true;
+          # };
 
           nil = {
             command = lib.getExe pkgs.nil;

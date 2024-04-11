@@ -29,13 +29,15 @@ in {
           tmuxPlugins.better-mouse-mode
           tmuxPlugins.sidebar
         ];
-        extraConfig = "
+        extraConfig = ''
           set-option -g status-position top
 
            # Easier reload of config
           bind g source-file ~/.config/tmux/tmux.conf
 
-        ";
+          set-option -g status-right " #(uname-r)"
+
+        '';
       };
     };
   };

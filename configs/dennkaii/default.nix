@@ -26,14 +26,15 @@
     git.enable = true;
 
     # the nix pkgs ver is outdated and i dont see how to fetch it to make it?
-    radicle.enable = false;
+    # radicle.enable = true;
 
     schizofox.enable = true;
     uchromium.enable = true;
 
     neovim.enable = false;
 
-    # Not worky
+    superfile.enable = true;
+
     discord.enable = true;
 
     hyprlock.enable = true;
