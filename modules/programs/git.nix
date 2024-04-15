@@ -3,21 +3,19 @@
   config,
   lib,
   ...
-}:let
-
-cfg = config.programs.git;
-inherit(lib) mkEnableOption mkIf;
-
+}: let
+  cfg = config.programs.git;
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.git = {
     enable = mkEnableOption "git";
   };
 
   config = mkIf cfg.enable {
-  
-     os.environment.systemPackages = with pkgs; [
+    os.environment.systemPackages = with pkgs; [
       git
       gh
+      lazygit
     ];
 
     hm.programs.git = {

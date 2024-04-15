@@ -1,34 +1,33 @@
 {
-  pkgs,
-  config,
   lib,
+  config,
   ...
 }: let
-  inherit (lib) getExe concatStringsSep;
-
-  initialSession = {
-    user = "${config.users.main}";
-    command = "Hyprland";
-  };
-
-  defaultSession = {
-    user = "greeter";
-    command = concatStringsSep " " [
-      (getExe pkgs.greetd.tuigreet)
-      "--time"
-      "--remember"
-      "--remember-user-session"
-      "asterisks"
-    ];
-  };
+  cfg = config.display.sddm;
+  inherit (lib) mkEnableOption mkIf;
 in {
-  os.services.greetd = {
-    enable = true;
-    vt = 2;
-    settings = {
-      default_session = defaultSession;
+  options.display.sddm = {
+    enable = mkEnableOption "sddm";
+  };
 
-      initial_session = initialSession;
+  config = mkIf cfg.enable {
+    os = {
+      services.xserver = {
+        enable = true;
+
+        desktopManager = {
+          runXdgAutostartIfNone = true;
+        };
+        displayManager = {
+          sddm = {
+            enable = true;
+            autoLogin = {
+              enable = true;
+              user = "${config.users.main}";
+            };
+          };
+        };
+      };
     };
   };
 }

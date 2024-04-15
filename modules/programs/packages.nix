@@ -34,6 +34,8 @@ in {
 
         upscayl
 
+        beeper
+
         floorp
 
         nyxt

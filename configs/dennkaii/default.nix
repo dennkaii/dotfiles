@@ -28,12 +28,14 @@
     # the nix pkgs ver is outdated and i dont see how to fetch it to make it?
     # radicle.enable = true;
 
-    schizofox.enable = true;
+    schizofox.enable = false;
     uchromium.enable = true;
 
     neovim.enable = false;
 
-    superfile.enable = true;
+    superfile.enable = false;
+
+    arduino.enable = true;
 
     discord.enable = true;
 
