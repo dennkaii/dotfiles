@@ -207,7 +207,7 @@ $env.config = {
         case_sensitive: false # set to true to enable case-sensitive completions
         quick: true    # set this to false to prevent auto-selecting completions when only one remains
         partial: true    # set this to false to prevent partial filling of the prompt
-        algorithm: "prefix"    # prefix or fuzzy
+        algorithm: "fuzzy"    # prefix or fuzzy
         external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
@@ -253,19 +253,31 @@ $env.config = {
         # Configuration for default nushell menus
         # Note the lack of source parameter
         {
-            name: completion_menu
+            name:compleiton_menu
             only_buffer_difference: false
             marker: "| "
-            type: {
-                layout: columnar
-                columns: 4
-                col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
-                col_padding: 2
+            type:{
+        layout: ide
+        min_completion_width: 0,
+        max_completion_width: 50,
+        max_completion_height: 10, # will be limited by the available lines in the terminal
+        padding: 0,
+        border: true,
+        cursor_offset: 0,
+        description_mode: "prefer_right"
+        min_description_width: 0
+        max_description_width: 50
+        max_description_height: 10
+        description_offset: 1
+        correct_cursor_pos: false
             }
-            style: {
-                text: geen
-                selected_text: green_reverse
-                description_text: yellow
+
+            style:{
+                        text: green
+        selected_text: { attr: r }
+        description_text: yellow
+        match_text: { attr: u }
+        selected_match_text: { attr: ur }
             }
         }
         {
