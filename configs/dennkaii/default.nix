@@ -5,6 +5,7 @@
 
   display = {
     hyprland.enable = true;
+    river.enable = true;
     sddm.enable = false;
     fcitx.enable = true;
   };
@@ -33,7 +34,7 @@
 
     neovim.enable = false;
 
-    superfile.enable = false;
+    superfile.enable = true;
 
     arduino.enable = true;
 

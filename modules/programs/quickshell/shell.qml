@@ -5,7 +5,6 @@ import QtQuick //text realted
 
 ShellRoot{
 
-      property string time;
     
     Variants{
         model: Quickshell.screens
@@ -19,31 +18,15 @@ ShellRoot{
                 left: true    
                 }
 
-                height:40
+                height:10
 
                 Text {
                     anchors.centerIn: parent
 
-                    text: time
+                    text: "aaaaa"
                 }
             }
        
     }
 
-      Process {
-    id: dateProc
-    command: ["date"]
-    running: true
-
-    stdout: SplitParser {
-      onRead: data => time = data
-    }
-  }
-
-  Timer {
-    interval: 1000
-    running: true
-    repeat: true
-    onTriggered: dateProc.running = true
-  }
 }

@@ -28,7 +28,7 @@ in {
     settings = {
       default_session = defaultSession;
 
-      initial_session = initialSession;
+      # initial_session = initialSession;
     };
   };
 }

@@ -264,7 +264,7 @@ in {
               "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
 
               #windows managment related
-              # "$mod, SEMICOLON, exit,"
+              "$mod, SEMICOLON, exit,"
               "$smod, f, fullscreen"
               "$mod, v, togglefloating"
 
