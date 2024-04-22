@@ -2,16 +2,16 @@
   pkgs,
   config,
   ...
-}:let
-#stolen from https://github.com/linuxmobile/kaku/blob/main/home/software/xdg.nix
-# browser = ["Schizofox"];
-browser = ["floorp"];
-imageViewer = ["qimgv"];
-Terminal = ["foot.desktop"];
-videoPlayer = ["io.github.celluloid_player.Celluloid"];
-audioPlayer = ["io.bassi.Amberol"];
+}: let
+  #stolen from https://github.com/linuxmobile/kaku/blob/main/home/software/xdg.nix
+  # browser = ["Schizofox"];
+  browser = ["floorp"];
+  imageViewer = ["qimgv"];
+  Terminal = ["foot.desktop"];
+  videoPlayer = ["io.github.celluloid_player.Celluloid"];
+  audioPlayer = ["io.bassi.Amberol"];
 
- xdgAssociations = type: program: list:
+  xdgAssociations = type: program: list:
     builtins.listToAttrs (map (e: {
         name = "${type}/${e}";
         value = program;
@@ -42,6 +42,9 @@ audioPlayer = ["io.bassi.Amberol"];
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
       "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
       "x-scheme-handler/element" = ["Element"];
+      "x-scheme-handler/steam" = browser;
+      "x-scheme-handler/steamlink" = browser;
+
       "text/html" = browser;
       "inode/directory" = ["org.gnome.Nautilus"];
       "text/plain" = ["Helix"];
@@ -51,17 +54,16 @@ audioPlayer = ["io.bassi.Amberol"];
     // video
     // audio
     // browserTypes);
-in{
+in {
   config = {
     hm = {
-    home.packages = with pkgs; [
-      qimgv
-      zathura
-      celluloid
-      amberol
-      zathura
+      home.packages = with pkgs; [
+        qimgv
+        zathura
+        celluloid
+        amberol
+        zathura
       ];
-
 
       xdg = {
         enable = true;
@@ -80,8 +82,6 @@ in{
           };
         };
       };
-      
     };
-    
   };
 }

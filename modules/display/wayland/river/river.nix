@@ -13,10 +13,20 @@ in {
       extraPackages = with pkgs; [
       ];
     };
-    hm.wayland.window.Manager.river = {
+    hm.wayland.windowManager.river = {
       enable = true;
       xwayland.enable = true;
-      settings = {
+      settings = let
+        layout = "rivertile";
+
+        main = "Super";
+        ssm = "Super+Shift";
+        sam = "Super+Alt";
+        scm = "Super+Control";
+        scam = "super+Control+Alt";
+      in {
+        default-layout = "${layout}";
+        output-layout = "${layout}";
         border-width = 2;
         declare-mode = [
           "locked"
@@ -24,13 +34,88 @@ in {
         ];
         map = {
           normal = {
-            "Super+Shift Q" = "close";
-            "Super Return" = "spawm foot";
+            "${ssm} Q" = "close";
+            "Super Return" = "spawn foot";
             "Super SPACE" = "spawn walker";
-            "Super+Shift E" = "exit";
+            "${ssm} E" = "exit";
+            "${ssm} F" = "toggle-fullscreen";
+            "${main} V" = "toggle-float";
+            "${main} H" = "focus-view previous";
+            "${main} L" = "focus-view next";
+
+            "Super+Shift H" = "swap previous";
+            "Super+Shift L" = "swap next";
+            "Super+Shift Period" = "send-to-output next";
+            "Super+Shift Comma" = "send-to-output previous";
+          };
+        };
+        spawn = [
+          "${layout}"
+          "walker --gapplication-service"
+        ];
+        map-pointer = {
+          normal = {
+            "Super BTN_LEFT" = "move-view";
+            "Super BTN_RIGHT" = "resize-view";
           };
         };
       };
+
+      extraConfig = ''
+
+        for i in $(seq 1 9)
+         do
+          tags=$((1 << ($i - 1)))
+        # Super+[1-9] to focus tag [0-8]
+           riverctl map normal Super $i set-focused-tags $tags
+        # Super+Shift+[1-9] to tag focused view with tag [0-8]
+           riverctl map normal Super+Shift $i set-view-tags $tags
+        # Super+Control+[1-9] to toggle focus of tag [0-8]
+           riverctl map normal Super+Control $i toggle-focused-tags $tags
+        # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
+          riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+          done
+        # Super+0 to focus all tags
+        # Super+Shift+0 to tag focused view with all tags
+          all_tags=$(((1 << 32) - 1))
+          riverctl map normal Super 0 set-focused-tags $all_tags
+          riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+
+
+
+        # Super+Alt+{H,J,K,L} to move views
+          riverctl map normal Super+Alt H move left 100
+          riverctl map normal Super+Alt J move down 100
+          riverctl map normal Super+Alt K move up 100
+          riverctl map normal Super+Alt L move right 100
+        # Super+Alt+Control+{H,J,K,L} to snap views to screen edges
+          riverctl map normal Super+Alt+Control H snap left
+          riverctl map normal Super+Alt+Control J snap down
+          riverctl map normal Super+Alt+Control K snap up
+          riverctl map normal Super+Alt+Control L snap righ
+
+        # Super+Alt+Shift+{H,J,K,L} to resize views
+          riverctl map normal Super+Alt+Shift H resize horizontal -100
+          riverctl map normal Super+Alt+Shift J resize vertical 100
+          riverctl map normal Super+Alt+Shift K resize vertical -100
+          riverctl map normal Super+Alt+Shift L resize horizontal 100
+
+        # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
+           # riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
+           # riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.05"
+
+        # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
+          # riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
+          # riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
+
+        # Super+{Up,Right,Down,Left} to change layout orientation
+          riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
+          riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
+          riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
+          riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
+
+      '';
     };
   };
 }
