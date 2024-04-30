@@ -24,6 +24,8 @@
 
     anyrun.enable = true;
     walker.enable = true;
+    fuzzel.enable = true;
+
     git.enable = true;
 
     # the nix pkgs ver is outdated and i dont see how to fetch it to make it?

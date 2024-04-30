@@ -42,9 +42,8 @@
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
       "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
       "x-scheme-handler/element" = ["Element"];
-      "x-scheme-handler/steam" = browser;
-      "x-scheme-handler/steamlink" = browser;
-
+      "x-scheme-handler/steamlink" = ["steam"];
+      "x-scheme-handler/steam" = ["steam"];
       "text/html" = browser;
       "inode/directory" = ["org.gnome.Nautilus"];
       "text/plain" = ["Helix"];
@@ -63,11 +62,12 @@ in {
         celluloid
         amberol
         zathura
+        xdg-utils
       ];
 
       xdg = {
         enable = true;
-        # cacheHome = config.hm.home.HomeDirectoy + "/.local/cache";
+        cacheHome = "/home/${config.users.main}/.local/cache";
 
         mimeApps = {
           enable = true;

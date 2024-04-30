@@ -34,6 +34,9 @@ in {
 
         upscayl
 
+        gnome2.libgnome
+        gnome.gnome-software
+
         beeper
 
         floorp
@@ -42,6 +45,8 @@ in {
 
         #audio purpouses but i remmeber havinf it installed
         pavucontrol
+
+        tldr
 
         element-desktop
         cinny-desktop

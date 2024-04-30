@@ -7,12 +7,12 @@
     inputs.nh.url = "github:viperML/nh";
 
     osModules = [
-      # inputs.nh.nixosModules.default
+      inputs.nh.nixosModules.default
     ];
 
     os.environment.variables.FLAKE = "/home/${config.users.main}/.nixConfig";
 
-    os.programs.nh = {
+    os.nh = {
       enable = true;
     };
   };
