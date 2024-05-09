@@ -1,10 +1,18 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   users.main = "dennkaii";
 
-  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers";
+  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/Dramatic-City-Sunset-4K-PC-Wallpaper.jpg";
+
+  # defaults = {
+  # terminal = "${pkgs.foot}/bin/foot --server";
+  # };
 
   display = {
-    hyprland.enable = true;
+    # hyprland.enable = true;
     river.enable = true;
     sddm.enable = false;
     fcitx.enable = true;
@@ -23,13 +31,14 @@
     qs.enable = true;
 
     anyrun.enable = true;
-    walker.enable = true;
+    # walker.enable = true;
     fuzzel.enable = true;
+    fnott.enable = true;
 
     git.enable = true;
 
     # the nix pkgs ver is outdated and i dont see how to fetch it to make it?
-    # radicle.enable = true;
+    radicle.enable = true;
 
     schizofox.enable = false;
     uchromium.enable = true;
@@ -54,7 +63,7 @@
 
     starship.enable = true;
 
-    mako.enable = true;
+    mako.enable = false;
     obs.enable = false;
 
     fish.enable = false;

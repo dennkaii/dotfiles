@@ -22,7 +22,7 @@ in {
 
       backgrounds = [
         {
-          path = "${config.wallpaper_dir}/gir_red_bg.png";
+          path = "${config.wallpaper_dir}";
           monitor = "";
           # color = "rgba(25, 20, 20, 1.0)";
           blur_size = 3;

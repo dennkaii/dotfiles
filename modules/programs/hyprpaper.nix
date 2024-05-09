@@ -16,6 +16,9 @@ in {
         Wallpapaer path
       '';
     };
+    wallName =
+      lib.mkOption {
+      };
   };
 
   config = mkIf cfg.enable {
@@ -27,10 +30,10 @@ in {
       enable = true;
 
       wallpapers = [
-        "eDP-1,${config.wallpaper_dir}/gir_red_bg.png"
+        "eDP-1,${config.wallpaper_dir}"
       ];
       preloads = [
-        "${config.wallpaper_dir}/gir_red_bg.png"
+        "${config.wallpaper_dir}"
       ];
     };
   };

@@ -41,7 +41,10 @@ in {
 
         floorp
 
-        nyxt
+        #crashes everytime now???
+        # nyxt
+
+        qutebrowser
 
         #audio purpouses but i remmeber havinf it installed
         pavucontrol
@@ -63,6 +66,7 @@ in {
         tidal-hifi
 
         logseq
+        siyuan
 
         #for hyprland script
         socat
