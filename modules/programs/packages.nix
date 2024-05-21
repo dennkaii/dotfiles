@@ -26,16 +26,20 @@ in {
       home.packages = with pkgs; [
         libreoffice-qt
 
+        zig
+
         ani-cli
 
-        pueue
+        # pueue
+        btop
 
         ferdium # webcord
 
         upscayl
+        way-displays
 
-        gnome2.libgnome
-        gnome.gnome-software
+        # gnome2.libgnome
+        # gnome.gnome-software
 
         beeper
 
@@ -52,7 +56,7 @@ in {
         tldr
 
         element-desktop
-        cinny-desktop
+        # cinny-desktop
 
         macchina
 

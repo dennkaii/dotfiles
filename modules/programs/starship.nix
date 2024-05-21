@@ -3,19 +3,19 @@
   config,
   lib,
   ...
-}:let
-cfg = config.programs.starship;
-inherit(lib) mkIf mkEnableOption;
+}: let
+  cfg = config.programs.starship;
+  inherit (lib) mkIf mkEnableOption;
 in {
   options.programs.starship = {
     enable = mkEnableOption "starship";
   };
 
-  config = mkIf cfg.enable{
+  config = mkIf cfg.enable {
     hm.programs.starship = {
       enable = true;
 
-#The integration line is in each shell file 
+      #The integration line is in each shell file
       # enableFishIntegration = true;
       #TODO => add custom prompt
 
@@ -43,29 +43,25 @@ in {
           success_symbol = "[◈](bold green)";
           error_symbol = "[◈](bold red)";
         };
-      
-        # directory.substitutions = {
-        #  "Documents" = "󰈙 ";
-        #  "Downloads" = " ";
-        #  "Music" = " ";
-        # "Pictures" = " ";
-        # };
 
-       
-          nix_shell = {
-        symbol = " ";
-        heuristic = true;
-      };
+        directory.substitutions = {
+          "Documents" = "󰈙 ";
+          "Downloads" = " ";
+          "Music" = " ";
+          "Pictures" = " ";
+        };
 
-       cmd_duration = {
-        min_time = 1;
-        format = " Took [$duration]($style) ";
-        disabled = false;
-        # style = "bg:none fg:${default.xcolors.mbg}";
-      };
-      
+        nix_shell = {
+          symbol = " ";
+          heuristic = true;
+        };
 
-        
+        cmd_duration = {
+          min_time = 1;
+          format = " Took [$duration]($style) ";
+          disabled = false;
+          # style = "bg:none fg:${default.xcolors.mbg}";
+        };
       };
     };
   };

@@ -42,6 +42,8 @@
               black
               alejandra
               shellcheck
+              zig
+              zls
               # kdePackages.qtdeclarative
             ])
           ];
@@ -278,6 +280,9 @@
           vscode-html-language-server = {
             command = lib.getExe pkgs.nodePackages.vscode-html-languageserver-bin;
             args = ["--stdio"];
+          };
+          zig-language-server = {
+            command = lib.getExe pkgs.zls;
           };
 
           # qml-lamguage-server = {

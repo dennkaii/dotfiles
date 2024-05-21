@@ -34,8 +34,11 @@
     # walker.enable = true;
     fuzzel.enable = true;
     fnott.enable = true;
+    # wired.enable = true;
 
     git.enable = true;
+
+    prism.enable = false;
 
     # the nix pkgs ver is outdated and i dont see how to fetch it to make it?
     radicle.enable = true;
