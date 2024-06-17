@@ -19,43 +19,60 @@ in {
         escapeTime = 0;
         keyMode = "vi";
         shortcut = "a";
+        sensibleOnTop = true;
+        disableConfirmationPrompt = true;
+        baseIndex = 1;
+        mouse = true;
+        newSession = true;
 
         extraConfig = ''
-          set-option -g status-position top
+          set -g allow-passthrough on
+          set -ga update-environment TERM
+          set -ga update-environment TERM_PROGRAM
+          set -g status-position top
+          set -g status-interval 1
 
-          bind g source-file ~/.config/tmux/tmux.conf
 
-          set -g status-right "Online: #{online_status}"
 
-           # Easier reload of config
         '';
 
         plugins = with pkgs; [
-          # tmuxPlugins.tmux-thumbs
-          tmuxPlugins.copycat
-          # tmuxPlugins.better-mouse-mode
-          tmuxPlugins.sidebar
-          # {
-          #   plugin = tmuxPlugins.resurrect;
-          #   extraConfig = ''
-          #             set -g @resurrect-strategy-vim 'session'
-          #     set -g @resurrect-strategy-nvim 'session'
-          #     set -g @resurrect-capture-pane-contents 'on'
-
-          #   '';
-          # }
           tmuxPlugins.sensible
+          {
+            plugin = tmuxPlugins.rose-pine;
+            extraConfig = ''
+              set -g @rose_pine_variant 'main'
+              set -g @rose_pine_date_time '%_I:%M %a %D'
+              set -g @rose_pine_show_pane_directory 'on'
+              set -g @rose_pine_status_left_prepend_section '#{tmux_mode_indicator}'
+              set -g @rose_pine_show_current_program 'on'
+              set -g @rose_pine_show_pane_directory 'on'
+            '';
+          }
+
           tmuxPlugins.pain-control
-          tmuxPlugins.online-status
-          tmuxPlugins.mode-indicator
-          # {
-          #   plugin = tmuxPlugins.continuum;
-          #   extraConfig = ''
-          #     set -g @continuum-restore 'on'
-          #     set -g @continuum-boot 'on'
-          #     set -g @continuum-save-interval '10'
-          #   '';
-          # }
+          {
+            plugin = tmuxPlugins.mode-indicator;
+            extraConfig = ''
+              set -g @mode_indicator_prefix_prompt ' WAIT '
+              set -g @mode_indicator_copy_prompt ' COPY '
+              set -g @mode_indicator_sync_prompt ' SYNC '
+              set -g @mode_indicator_empty_prompt ' TMUX '
+              set -g @mode_indicator_prefix_mode_style 'bg=#191724,fg=blue'
+              set -g @mode_indicator_copy_mode_style 'bg=#191724,fg=yellow'
+              set -g @mode_indicator_sync_mode_style 'bg=#191724,fg=red'
+              set -g @mode_indicator_empty_mode_style 'bg=#191724,fg=cyan'
+            '';
+          }
+          {
+            plugin = tmuxPlugins.extrakto;
+            extraConfig = ''
+              set -g @extrakto_clip_tool wl-copy
+              set -g @extrakto_editor hx
+              set -g @extrakto_open_tool floorp
+              set -g @extrakto_filter_order 'url path line word'
+            '';
+          }
         ];
       };
     };

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   users.main = "dennkaii";
 
   wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/Dramatic-City-Sunset-4K-PC-Wallpaper.jpg";

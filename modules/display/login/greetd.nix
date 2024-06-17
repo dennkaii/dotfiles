@@ -8,7 +8,7 @@
 
   initialSession = {
     user = "${config.users.main}";
-    command = "Hyprland";
+    command = "river";
   };
 
   defaultSession = {
@@ -28,7 +28,7 @@ in {
     settings = {
       default_session = defaultSession;
 
-      # initial_session = initialSession;
+      initial_session = initialSession;
     };
   };
 }

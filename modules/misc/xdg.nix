@@ -6,7 +6,7 @@
   #stolen from https://github.com/linuxmobile/kaku/blob/main/home/software/xdg.nix
   # browser = ["Schizofox"];
   browser = ["floorp"];
-  imageViewer = ["qimgv"];
+  imageViewer = ["oculante"];
   Terminal = ["foot.desktop"];
   videoPlayer = ["io.github.celluloid_player.Celluloid"];
   audioPlayer = ["io.bassi.Amberol"];

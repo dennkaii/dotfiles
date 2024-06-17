@@ -51,6 +51,8 @@
       "nix-command"
       "ca-derivations"
       "recursive-nix"
+      "auto-allocate-uids"
+      "configurable-impure-env"
     ];
   };
 in {

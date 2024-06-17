@@ -30,8 +30,13 @@ in {
 
         ani-cli
 
+        #for zig learnign???
+        exercism
+
         # pueue
         btop
+
+        # premid
 
         ferdium # webcord
 
@@ -45,6 +50,9 @@ in {
 
         floorp
 
+        obs-studio
+        # gnome.gnome-boxes
+
         #crashes everytime now???
         # nyxt
 
@@ -56,6 +64,8 @@ in {
         tldr
 
         element-desktop
+
+        protonmail-desktop
         # cinny-desktop
 
         macchina
@@ -65,12 +75,15 @@ in {
         kooha
         # unrar
 
+        oculante
+
         gnome.nautilus
 
         tidal-hifi
 
         logseq
-        siyuan
+
+        zk
 
         #for hyprland script
         socat

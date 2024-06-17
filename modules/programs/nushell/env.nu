@@ -62,6 +62,7 @@ $env.EDITOR = "hx"
 $env.GTK_IM_MODULE = "fcitx"
 $env.QT_IM_MODULE = "fcitx"
 $env.XMODIFIERS = "@im=fcitx"
+$env.ZK_SHELL = bash
 
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.

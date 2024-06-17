@@ -24,17 +24,19 @@ in {
   config = mkIf cfg.enable {
     inputs.hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    hmModules = [inputs.hyprpaper.homeManagerModules.default];
+    # hmModules = [inputs.hyprpaper.homeManagerModules.default];
 
     hm.services.hyprpaper = {
       enable = true;
 
-      wallpapers = [
-        "eDP-1,${config.wallpaper_dir}"
-      ];
-      preloads = [
-        "${config.wallpaper_dir}"
-      ];
+      settings = {
+        wallpaper = [
+          "eDP-1,${config.wallpaper_dir}"
+        ];
+        preload = [
+          "${config.wallpaper_dir}"
+        ];
+      };
     };
   };
 }
