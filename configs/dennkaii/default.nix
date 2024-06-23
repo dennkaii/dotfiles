@@ -1,11 +1,15 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   users.main = "dennkaii";
 
   wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/Dramatic-City-Sunset-4K-PC-Wallpaper.jpg";
 
-  # defaults = {
-  # terminal = "${pkgs.foot}/bin/foot --server";
-  # };
+  defaults = {
+    terminal = "wezterm";
+  };
 
   display = {
     # hyprland.enable = true;
@@ -60,7 +64,9 @@
     waybar.enable = false;
     kde.enable = true;
 
-    starship.enable = true;
+    # starship.enable = true;
+
+    ompsh.enable = true;
 
     mako.enable = false;
     obs.enable = false;
@@ -70,6 +76,9 @@
     nu.enable = true;
 
     foot.enable = true;
+    terminals = {
+      wezterm.enable = true;
+    };
     tmux.enable = true;
 
     stylix.enable = true;

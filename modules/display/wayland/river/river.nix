@@ -7,6 +7,9 @@
   cfg = config.display.river;
 in {
   options.display.river.enable = lib.mkEnableOption "river wm";
+  options.defaults.terminal = lib.mkOption {
+    type = with lib.types; str;
+  };
   config = lib.mkIf cfg.enable {
     os = {
       # services.displayManager.sessionPackages = let
@@ -36,8 +39,10 @@ in {
           kile-wl
           river-bnf
           satty
+          wl-clipboard
           grim
           slurp
+          grimblast
           i3status-rust
         ];
       };
@@ -51,13 +56,25 @@ in {
         ];
       };
     };
+
     hm = let
       cursor = {
-        package = lib.mkForce pkgs.catppuccin-cursors.macchiatoTeal;
-        name = lib.mkForce "Catppuccin-Macchiato-Teal-Cursors";
+        package = lib.mkForce pkgs.rose-pine-cursor;
+        name = lib.mkForce "BreezX-RosePine-Linux";
         size = lib.mkForce 24;
       };
+
+      screenarea = "grimblast save area - | satty --filename - ";
+      screenactive = "grimblast save active - | satty --filename - ";
     in {
+      programs.i3status-rust = {
+        enable = true;
+        bars = {
+          bottom = {
+            icons = "awesome6";
+          };
+        };
+      };
       home.pointerCursor = {
         gtk.enable = true;
         name = cursor.name;
@@ -92,11 +109,12 @@ in {
           map = {
             normal = {
               "${ssm} Q" = "close";
-              "Super Return" = "spawn footclient";
+              "Super Return" = "spawn ${config.defaults.terminal}";
+
               "Super SPACE" = "spawn fuzzel";
               #screenShots Not Done yet
-              # "${main} P" = ''spawn grim - | '';
-              # "${ssm}  P" = ''spawn '';
+              "${ssm} S" = ''spawn "${screenactive}"'';
+              "${main}  S" = ''spawn "${screenarea}"'';
               "${ssm} E" = "exit";
               "${ssm} F" = "toggle-fullscreen";
               "${main} Z" = "zoom";
@@ -154,7 +172,7 @@ in {
             };
           };
 
-          # xcursor-theme = "${cursor.name} ${cursor.size}";
+          xcursor-theme = "BreezX-RosePine-Linux 24";
           set-repeat = "50 300";
 
           map-pointer = {

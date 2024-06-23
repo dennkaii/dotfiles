@@ -3,10 +3,9 @@
   lib,
   config,
   ...
-}: let 
-cfg = config.programs.fish;
-inherit(lib) mkEnableOption mkIf;
-
+}: let
+  cfg = config.programs.fish;
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.fish = {
     enable = mkEnableOption "fish";
@@ -19,37 +18,32 @@ in {
     };
 
     hm = {
+      programs.starship.enableFishIntegration = true;
 
-    programs.starship.enableFishIntegration = true;
-    
-    programs.zellij = {
-    enable = true;
-    settings  = {
-     default_shell =  "fish";
-      # theme = "default";
-      simplified_ui = true;
-      pane_frames = false;
-      default_layout = "compact";
-            };
-      #Not working the fish integration hm module
-    # enableFishIntegration = true;
-      # enableFishIntegration = true;
-  };
+      programs.zellij = {
+        enable = true;
+        settings = {
+          default_shell = "fish";
+          # theme = "default";
+          simplified_ui = true;
+          pane_frames = false;
+          default_layout = "compact";
+        };
+      };
 
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    icons = true;
-  };
+      programs.eza = {
+        enable = true;
+        # enableAliases = true;
+        icons = true;
+      };
 
       programs.fish = {
         enable = true;
-         interactiveShellInit = ''
-   set fish_greeting # Disable greeting
+        interactiveShellInit = ''
+          set fish_greeting # Disable greeting
 
-       '';
+        '';
       };
     };
-    
   };
 }

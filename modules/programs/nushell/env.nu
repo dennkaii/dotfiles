@@ -1,5 +1,4 @@
-# Nushell Environment Config File
-#
+ # Nushell Environment Config File
 # version = "0.89.0"
 
 def create_left_prompt [] {
@@ -63,7 +62,6 @@ $env.GTK_IM_MODULE = "fcitx"
 $env.QT_IM_MODULE = "fcitx"
 $env.XMODIFIERS = "@im=fcitx"
 $env.ZK_SHELL = bash
-
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
 # This can be useful if you have a 2-line prompt and it's taking up a lot of space

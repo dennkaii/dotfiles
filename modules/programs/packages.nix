@@ -28,6 +28,8 @@ in {
 
         zig
 
+        geogebra6
+
         ani-cli
 
         #for zig learnign???

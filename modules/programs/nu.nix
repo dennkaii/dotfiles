@@ -19,7 +19,6 @@ in {
         atuin.enable = true;
         broot.enable = true;
         carapace.enable = true;
-        yazi.enable = true;
       };
 
       programs.atuin.enableNushellIntegration = true;
@@ -27,7 +26,7 @@ in {
       programs.zoxide.enableNushellIntegration = true;
 
       programs.zellij = {
-        enable = true;
+        enable = false;
 
         settings = {
           default_shell = "nu";
@@ -36,6 +35,10 @@ in {
           default_layout = "compact";
         };
       };
+      home.packages = [
+        pkgs.fish
+      ];
+
       programs.nushell = {
         enable = true;
         configFile.source = ./nushell/config.nu;
