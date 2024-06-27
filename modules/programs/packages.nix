@@ -52,7 +52,7 @@ in {
 
         floorp
 
-        obs-studio
+        # obs-studio
         # gnome.gnome-boxes
 
         #crashes everytime now???

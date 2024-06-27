@@ -2,9 +2,9 @@
   config,
   lib,
   ...
-}: let 
-cfg = config.services.tailscale;
-inherit(lib) mkEnableOption mkIf;
+}: let
+  cfg = config.services.tailscale;
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.services.tailscale.enable = mkEnableOption "tailscale";
 
@@ -13,4 +13,3 @@ in {
     # os.services.tailscale.port = "0";
   };
 }
-

@@ -10,14 +10,6 @@ in {
   options.gtk.enable = mkEnableOption "gtk";
 
   config = mkIf cfg.enable {
-    # os.nixpkgs.overlays = [
-    #   (_: prev: {
-    #     gtk3 = prev.gtk3.overrideAttrs (o: {
-    #       patches = (o.patches or []) ++ [./gtk3-no-title-bar.patch];
-    #     });
-    #   })
-    # ];
-
     hm = {
       home.packages = [pkgs.dconf];
       dconf.enable = true; #wiki says gtk may not work without it
@@ -35,12 +27,6 @@ in {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme;
         };
-
-        # cursorTheme = {
-        #   name = "GoogleDot-White";
-        #   size = 24;
-        #   package = pkgs.google-cursor;
-        # };
       };
     };
   };
