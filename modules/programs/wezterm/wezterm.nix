@@ -28,7 +28,7 @@ in {
           return {
 
         color_scheme = 'Oxocarbon Dark (Gogh)',
-        window_background_opacity = 0.9,
+        window_background_opacity = 1.0,
         enable_tab_bar = false,
         scrollback_lines = 10000,
         window_padding = {

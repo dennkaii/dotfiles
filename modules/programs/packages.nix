@@ -32,6 +32,8 @@ in {
 
         ani-cli
 
+        foliate
+
         #for zig learnign???
         exercism
 
@@ -63,6 +65,8 @@ in {
         #audio purpouses but i remmeber havinf it installed
         pavucontrol
 
+        # onionshare
+        onionshare-gui
         tldr
 
         element-desktop

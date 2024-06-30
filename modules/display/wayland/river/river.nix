@@ -168,7 +168,7 @@ in {
 
           rule-add = {
             "-app-id" = {
-              "'*'" = "ssd";
+              "'firefox'" = "ssd";
             };
           };
 
@@ -185,6 +185,11 @@ in {
 
         extraSessionVariables = {
           TERM = "foot";
+          QT_QPA_PLATFORM = "wayland";
+          KDE_SESSION_VERSION = 5;
+          MOZ_ENABLE_WAYLAND = 1;
+          XDG_CURRENT_DESKTOP = "river";
+          XDG_SESSION_DESKTOP = "river";
         };
 
         extraConfig = ''

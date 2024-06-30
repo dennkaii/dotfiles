@@ -19,6 +19,12 @@ in {
 
         gtk3.extraConfig = {
           gtk-decoration-layout = ":menu"; # disable title bar buttons
+          gtk-application-prefer-dark-theme = 1;
+          gtk-dialogs-use-header = false;
+        };
+        gtk4.extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+          gtk-dialogs-use-header = false;
         };
 
         #Fonts are already manager by stylix

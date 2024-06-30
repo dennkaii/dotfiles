@@ -20,6 +20,22 @@ in {
       #TODO declarative config
       programs.schizofox = {
         enable = true;
+
+        security = {
+          sanitizeOnShutdown = false;
+          sandbox = true;
+        };
+        search = {
+          defaultSearchEngine = "Kagi";
+          removeEngines = ["Google" "Bing" "Amazon.com" "eBay" "Twitter" "Wikipedia"];
+          addEngines = [
+            {
+              name = "Kagi";
+              alias = "kagi";
+              URLTemplate = "https://kagi.com/search?q=%s";
+            }
+          ];
+        };
       };
     };
   };

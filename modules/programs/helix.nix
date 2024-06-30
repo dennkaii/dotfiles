@@ -44,20 +44,21 @@
               shellcheck
               zig
               zls
-              # kdePackages.qtdeclarative
             ])
           ];
       });
 
       settings = {
         theme = "oxocarbon";
-        # icons = "nerdfonts";
 
         editor = {
           true-color = true;
           cursorline = true;
           mouse = false;
           completion-replace = true;
+          completion-timeout = 5;
+          completion-trigger-len = 2;
+          bufferline = "multiple";
           auto-format = true;
           auto-save = true;
           auto-info = true;
@@ -65,6 +66,7 @@
           idle-timeout = 250;
           indent-guides.render = true;
           rulers = [100];
+          gutters = ["diff" "line-numbers" "spacer" "diagnostics"];
           cursor-shape = {
             insert = "bar";
             select = "block";
@@ -73,6 +75,11 @@
           lsp = {
             display-inlay-hints = true;
             display-messages = true;
+          };
+          statusline = {
+            left = ["mode" "spinner" "file-name" "file-modification-indicator"];
+            center = ["diagnostics" "workspace-diagnostics"];
+            right = ["position" "spacer" "file-type"];
           };
         };
 
@@ -208,6 +215,18 @@
           "ui.bufferline.active" = {
             fg = base06;
             bg = base01;
+          };
+          "ui.statusline.normal" = {
+            bg = base0F;
+            fg = base00;
+          };
+          "ui.statusline.insert" = {
+            bg = base0A;
+            fg = base00;
+          };
+          "ui.statusline.select" = {
+            bg = base0D;
+            fg = base00;
           };
         };
       };

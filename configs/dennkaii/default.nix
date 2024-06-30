@@ -50,7 +50,7 @@
     ags.enable = false;
     waybar.enable = false;
     # kdeConnect
-    kde.enable = true;
+    kde.enable = false;
     #Terminal prompt theming
     ompsh.enable = true;
     #Recording
@@ -61,6 +61,10 @@
     foot.enable = true; #wezterm need to move foot inside
     terminals = {
       wezterm.enable = true;
+    };
+    gui = {
+      #manga reader
+      suwayomi.enable = true;
     };
     #terminal multiplexer but plugins no worky
     tmux.enable = true;
@@ -77,7 +81,7 @@
     # DISABLED FOREVER PROBABLY
     mako.enable = false;
     fish.enable = false;
-    schizofox.enable = false;
+    schizofox.enable = true;
     rbw.enable = true;
     neovim.enable = false;
     anyrun.enable = false;
@@ -91,5 +95,7 @@
     tailscale.enable = false;
     protonvpn.enable = false;
     podman.enable = false;
+
+    searxng.enable = true;
   };
 }
