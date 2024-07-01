@@ -1,9 +1,31 @@
 {
   # config,
   inputs,
+  pkgs,
+  config,
   ...
-}: {
-  inputs.agenix.url = "github:ryantm/agenix";
+}: let
+  cfs = config.services;
+in {
+  config = {
+    inputs.agenix.url = "github:ryantm/agenix";
+    inputs.nyx.url = "github:NotAShelf/nyx";
 
-  osModules = [inputs.agenix.nixosModules.default];
+    osModules = [
+      inputs.agenix.nixosModules.default
+    ];
+
+    os.environment.systemPackages = [
+      inputs.agenix.packages.${pkgs.system}.default
+    ];
+
+    os.age.secrets = {
+      searx-key = inputs.nyx.lib.mkAgenixSecret cfs.searxng.enable {
+        file = "../../secrets/searx.age";
+        mode = "400";
+        owner = "searx";
+        group = "searx";
+      };
+    };
+  };
 }

@@ -34,12 +34,15 @@ in
       flake-parts.lib.mkFlake {inherit inputs;} {
         imports = [
           inputs.devshell.flakeModule
+          # ./parts
         ];
         systems = [
           "x86_64-linux"
         ];
         perSystem = {pkgs, ...}: {
           formatter = pkgs.alejandra;
+
+          # devshells = import ./devshells;
 
           devshells.start_page = {
             env = [
