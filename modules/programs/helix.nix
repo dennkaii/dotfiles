@@ -37,6 +37,7 @@
               nodePackages.vscode-css-languageserver-bin
               nodePackages.vscode-langservers-extracted
               nodePackages.prettier
+              nodePackages."@astrojs/language-server"
               rustfmt
               rust-analyzer
               black
@@ -44,6 +45,7 @@
               shellcheck
               zig
               zls
+              # vimPlugins.coc-tailwindcs
             ])
           ];
       });
@@ -260,10 +262,22 @@
             roots = ["flake.nix"];
           }
           {
+            name = "astro";
+            auto-format = true;
+            language-servers = ["astro-ls"];
+          }
+          {
             name = "html";
             auto-format = true;
             language-servers = ["emmet-ls" "vscode-html-server"];
           }
+          (mkPrettier "css" "css")
+          (mkPrettier "scss" "scss")
+
+          (withLangServers (mkPrettier "typescript" "ts") ["typescript-language-server" "eslint" "emmet-ls"])
+          (withLangServers (mkPrettier "tsx" "tsx") ["typescript-language-server" "eslint" "emmet-ls"])
+          (withLangServers (mkPrettier "javascript" "js") ["typescript-language-server" "eslint" "emmet-ls"])
+          (withLangServers (mkPrettier "jsx" "js") ["typescript-language-server" "eslint" "emmet-ls"])
           (withLangServers (mkPrettier "markdown" "md") ["markdown-oxide" "emmet-ls" "ltex-ls"])
         ];
 
@@ -277,6 +291,19 @@
           };
           markdown-oxide = {
             command = lib.getExe pkgs.markdown-oxide;
+          };
+          tailwindcss-ls = {
+            command =
+              lib.getExe pkgs.nodejs;
+            args = ["${pkgs.vimPlugins.coc-tailwindcss}/lsp/tailwindcss-language-server/dist/index.js" "--stdio"];
+            config = {};
+          };
+          astro-ls = {
+            # command = lib.getExe pkgs.nodePackages."@astrojs/language-server";
+            command = "astro-ls";
+            args = ["--stdio"];
+            config.typescript.tsdk = "${pkgs.nodejs_22}/lib";
+            config.environment = "node";
           };
           #stolen from n3oney
           typescript-language-server = {

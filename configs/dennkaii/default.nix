@@ -1,7 +1,7 @@
 {config, ...}: {
   users.main = "dennkaii";
 
-  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/Dramatic-City-Sunset-4K-PC-Wallpaper.jpg";
+  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/sekirowall.png";
 
   defaults = {
     terminal = "wezterm";
@@ -41,33 +41,33 @@
     # terminal file manager with alot of funny things
     superfile.enable = true;
     #Vesktop discord
-    discord.enable = true;
+    discord.enable = false;
     #Wallpapaer, lockscreen and idle daemon
     hyprlock.enable = true;
     hypridle.enable = true;
     hyprpaper.enable = true;
     # Not Being used
     ags.enable = false;
-    waybar.enable = false;
+    waybar.enable = true;
     # kdeConnect
     kde.enable = false;
     #Terminal prompt theming
     ompsh.enable = true;
     #Recording
-    obs.enable = true;
+    obs.enable = false;
     #Default shell
     nu.enable = true;
     # Foot terminal but seems broken
-    foot.enable = true; #wezterm need to move foot inside
+    foot.enable = false; #wezterm need to move foot inside
     terminals = {
       wezterm.enable = true;
     };
     gui = {
       #manga reader
-      suwayomi.enable = true;
+      suwayomi.enable = false;
     };
     #terminal multiplexer but plugins no worky
-    tmux.enable = true;
+    tmux.enable = false;
     #define fonts and global theme
     stylix.enable = true;
     # literal games

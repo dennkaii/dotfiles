@@ -7,7 +7,7 @@
   # browser = ["Schizofox"];
   browser = ["floorp"];
   imageViewer = ["oculante"];
-  Terminal = ["foot.desktop"];
+  Terminal = ["org.wezfurlong.wezterm"];
   videoPlayer = ["io.github.celluloid_player.Celluloid"];
   audioPlayer = ["io.bassi.Amberol"];
 

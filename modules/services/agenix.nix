@@ -19,13 +19,13 @@ in {
       inputs.agenix.packages.${pkgs.system}.default
     ];
 
-    os.age.secrets = {
-      searx-key = inputs.nyx.lib.mkAgenixSecret cfs.searxng.enable {
-        file = "../../secrets/searx.age";
-        mode = "400";
-        owner = "searx";
-        group = "searx";
-      };
-    };
+    # age.secrets = {
+    #   searx-key = inputs.nyx.lib.mkAgenixSecret cfs.searxng.enable {
+    #     file = "../../secrets/searx.age";
+    #     mode = "400";
+    #     owner = "searx";
+    #     group = "searx";
+    #   };
+    # };
   };
 }

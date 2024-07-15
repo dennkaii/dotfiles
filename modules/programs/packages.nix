@@ -17,6 +17,7 @@ in {
     os = {
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"
+        "electron-28.3.3"
       ];
 
       services.gnome.sushi.enable = true;
@@ -27,10 +28,15 @@ in {
         libreoffice-qt
 
         zig
+        kdenlive
+
+        inkscape
 
         geogebra6
 
         ani-cli
+
+        zed-editor
 
         foliate
 
@@ -58,7 +64,7 @@ in {
         # gnome.gnome-boxes
 
         #crashes everytime now???
-        # nyxt
+        nyxt
 
         qutebrowser
 

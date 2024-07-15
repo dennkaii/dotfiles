@@ -36,7 +36,7 @@ in {
         enable = true;
         extraPackages = with pkgs; [
           i3bar-river
-          kile-wl
+          wideriver
           river-bnf
           satty
           wl-clipboard
@@ -59,9 +59,9 @@ in {
 
     hm = let
       cursor = {
-        package = lib.mkForce pkgs.rose-pine-cursor;
-        name = lib.mkForce "BreezX-RosePine-Linux";
-        size = lib.mkForce 24;
+        package = pkgs.phinger-cursors;
+        name = "phinger-cursors";
+        size = 24;
       };
 
       screenarea = "grimblast save area - | satty --filename - ";
@@ -86,12 +86,12 @@ in {
         };
       };
 
-      wayland.windowManager.river = {
+      wayland.windowManager.river = let
+        layout = "wideriver";
+      in {
         enable = true;
         xwayland.enable = true;
         settings = let
-          layout = "rivertile";
-
           main = "Super";
           ssm = "Super+Shift";
           sas = "Super+Alt+Shift";
@@ -110,6 +110,7 @@ in {
             normal = {
               "${ssm} Q" = "close";
               "Super Return" = "spawn ${config.defaults.terminal}";
+              "Super N" = ''spawn "WEBKIT_DISABLE_COMPOSITING_MODE=1 nyxt"'';
 
               "Super SPACE" = "spawn fuzzel";
               #screenShots Not Done yet
@@ -155,15 +156,16 @@ in {
             };
           };
           spawn = [
-            "${layout}"
+            ''${layout}''
             "${pkgs.foot}/bin/foot --server"
             "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
             "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store #Stores only image data"
             "${pkgs.wluma}/bin/wluma"
             "fnott"
-            "i3bar-river"
+            # "i3bar-river"
             "fcitx5"
             "${pkgs.bash} startup.sh"
+            "waybar"
           ];
 
           rule-add = {
@@ -172,8 +174,9 @@ in {
             };
           };
 
-          xcursor-theme = "BreezX-RosePine-Linux 24";
+          xcursor-theme = "phinger-cursors";
           set-repeat = "50 300";
+          focus-follows-cursor = "normal";
 
           map-pointer = {
             normal = {
@@ -188,11 +191,13 @@ in {
           QT_QPA_PLATFORM = "wayland";
           KDE_SESSION_VERSION = 5;
           MOZ_ENABLE_WAYLAND = 1;
+          #for nyxt to not crash
           XDG_CURRENT_DESKTOP = "river";
           XDG_SESSION_DESKTOP = "river";
         };
 
         extraConfig = ''
+
 
           ${pkgs.bash}/bin/bash way-displays.sh
 
@@ -236,7 +241,7 @@ in {
                   focus_tag_map normal Super $i $tagmask
               done
 
-                              rivertile -view-padding 1 -outer-padding 1 &
+                              ${layout} -view-padding 2 -outer-padding 2 &
 
         '';
       };
