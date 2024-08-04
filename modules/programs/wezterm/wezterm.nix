@@ -10,8 +10,26 @@ in {
   options.programs.terminals.wezterm.enable = mkEnableOption "wezterm";
 
   config = mkIf cfg.enable {
+    # hm.home.packages = with pkgs; [
+    # (writeShellScriptBin "helix-wezterm" (builtins.readFile ./helix-wezterm.sh))
+    # (writeShellScriptBin "helix-fzf" (builtins.readFile ./helix-fzf.sh))
+    # ];
     hm.programs.wezterm = {
       enable = true;
+      package = pkgs.wezterm.overrideAttrs (self: {
+        makeWrappersArgs = with pkgs;
+          self.makeWrapperArgs
+          or []
+          ++ [
+            "--suffix"
+            "PATH"
+            ":"
+            (lib.makeBinPath [
+              (writeShellScriptBin "helix-wezterm" (builtins.readFile ./helix-wezterm.sh))
+              (writeShellScriptBin "helix-fzf" (builtins.readFile ./helix-fzf.sh))
+            ])
+          ];
+      });
 
       extraConfig = ''
                   local wezterm = require 'wezterm'
@@ -48,8 +66,11 @@ in {
         {key = '-', mods = 'LEADER' , action  = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain'} },
         {key = '=', mods = 'LEADER' , action  = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain'} },
         {key = 'x', mods = 'LEADER' , action  = wezterm.action.CloseCurrentPane {confirm = false} },
-        {key = 'h', mods = 'LEADER' , action  = wezterm.action.RotatePanes 'CounterClockwise', },
-        {key = 'l', mods = 'LEADER' , action  = wezterm.action.RotatePanes 'Clockwise', },
+        --movement
+        {key = 'h', mods = 'LEADER' , action  = wezterm.action.ActivatePaneDirection "Left"},
+        {key = 'j', mods = 'LEADER' , action  = wezterm.action.ActivatePaneDirection "Down"},
+        {key = 'k', mods = 'LEADER' , action  = wezterm.action.ActivatePaneDirection "Up"},
+        {key = 'l', mods = 'LEADER' , action  = wezterm.action.ActivatePaneDirection "Right"},
                 }
 
 

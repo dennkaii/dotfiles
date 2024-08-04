@@ -3,14 +3,16 @@
   inputs,
   lib,
   ...
-}: {
+}: let
+  commonRoots = ["flake.lock" "package-lock.json" "yarn.lock" "pnpm-lock" "bun.lockb"];
+in {
   inputs.helix.url = "github:helix-editor/helix";
 
   hm = {
     home.sessionVariables.EDITOR = "hx";
 
     home.packages = with pkgs; [
-      nodePackages.vscode-css-languageserver-bin
+      # nodePackages.vscode-css-languageserver-bin
       nodePackages.vscode-langservers-extracted
       nodePackages.prettier
     ];
@@ -34,9 +36,10 @@
               nil
               luajitPackages.lua-lsp
               nodePackages.bash-language-server
-              nodePackages.vscode-css-languageserver-bin
+              # nodePackages.vscode-css-languageserver-bin
               nodePackages.vscode-langservers-extracted
               nodePackages.prettier
+              typescript
               nodePackages."@astrojs/language-server"
               rustfmt
               rust-analyzer
@@ -45,6 +48,9 @@
               shellcheck
               zig
               zls
+              (writeShellScriptBin "helix-wezterm" (builtins.readFile ./helix-wezterm.sh))
+              (writeShellScriptBin "helix-fzf" (builtins.readFile ./helix-fzf.sh))
+
               # vimPlugins.coc-tailwindcs
             ])
           ];
@@ -52,6 +58,19 @@
 
       settings = {
         theme = "oxocarbon";
+
+        keys.normal = {
+          space."," = {
+            b = ":sh helix-wezterm.sh blame";
+            c = ":sh helix-wezterm.sh check";
+            e = ":sh helix-wezterm.sh explorer";
+            f = ":sh helix-wezterm.sh fzf";
+            g = ":sh helix-wezterm.sh lazygit";
+            o = ":sh helix-wezterm.sh open";
+            r = ":sh helix-wezterm.sh run";
+            t = ":sh helix-wezterm.sh test";
+          };
+        };
 
         editor = {
           true-color = true;
@@ -249,30 +268,35 @@
             };
           };
         in [
-          # {
-          # name = "markdown";
-          # auto-format = true;
-          # language-servers = ["markdown-oxide" "ltex-ls"];
-          # }
-
           {
             name = "nix";
             auto-format = true;
             formatter = {command = lib.getExe pkgs.alejandra;};
             roots = ["flake.nix"];
+            scope = "source.nix";
+            file-types = ["nix"];
           }
+
           {
             name = "astro";
+            scope = "source.astro";
+            file-types = ["astro"];
             auto-format = true;
-            language-servers = ["astro-ls"];
+            formatter = {
+              command = "${pkgs.nodePackages.prettier}/bin/prettier";
+              args = ["--parser" "astro"];
+            };
+            language-servers = ["astro-lsp" "emmet-lsp"];
+            roots = commonRoots;
           }
-          {
-            name = "html";
-            auto-format = true;
-            language-servers = ["emmet-ls" "vscode-html-server"];
-          }
+          # {
+          #   name = "html";
+          #   auto-format = true;
+          #   language-servers = ["emmet-ls" "vscode-html-server"];
+          # }
           (mkPrettier "css" "css")
           (mkPrettier "scss" "scss")
+          # (mkPrettier "astro" "astro")
 
           (withLangServers (mkPrettier "typescript" "ts") ["typescript-language-server" "eslint" "emmet-ls"])
           (withLangServers (mkPrettier "tsx" "tsx") ["typescript-language-server" "eslint" "emmet-ls"])
@@ -293,17 +317,14 @@
             command = lib.getExe pkgs.markdown-oxide;
           };
           tailwindcss-ls = {
-            command =
-              lib.getExe pkgs.nodejs;
+            command = lib.getExe pkgs.nodejs;
             args = ["${pkgs.vimPlugins.coc-tailwindcss}/lsp/tailwindcss-language-server/dist/index.js" "--stdio"];
             config = {};
           };
-          astro-ls = {
-            # command = lib.getExe pkgs.nodePackages."@astrojs/language-server";
+          astro-lsp = {
             command = "astro-ls";
             args = ["--stdio"];
-            config.typescript.tsdk = "${pkgs.nodejs_22}/lib";
-            config.environment = "node";
+            file-types = ["astro"];
           };
           #stolen from n3oney
           typescript-language-server = {
@@ -317,16 +338,16 @@
             command = lib.getExe pkgs.nodePackages.vscode-langservers-extracted;
           };
 
-          vscode-css-language-server = {
-            command = lib.getExe pkgs.nodePackages.vscode-css-languageserver-bin;
-            args = ["--stdio"];
-            config.provideFormatter = true;
-          };
+          # vscode-css-language-server = {
+          #   command = lib.getExe pkgs.nodePackages.vscode-css-languageserver-bin;
+          #   args = ["--stdio"];
+          #   config.provideFormatter = true;
+          # };
 
-          vscode-html-language-server = {
-            command = lib.getExe pkgs.nodePackages.vscode-html-languageserver-bin;
-            args = ["--stdio"];
-          };
+          # vscode-html-language-server = {
+          #   command = lib.getExe pkgs.nodePackages.vscode-html-languageserver-bin;
+          #   args = ["--stdio"];
+          # };
           zig-language-server = {
             command = lib.getExe pkgs.zls;
           };

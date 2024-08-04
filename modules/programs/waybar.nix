@@ -20,9 +20,9 @@ in {
             position = "bottom";
             height = 15;
 
-            modules-left = ["river/tags"];
-            modules-center = ["clock"];
-            modules-right = ["tray"];
+            modules-left = ["idle_inhibitor" "clock"];
+            modules-center = ["river/tags"];
+            modules-right = ["cpu" "network" "tray" "upower"];
             "river/tags" = {
               num-tags = 5;
               set-tag = [
@@ -36,9 +36,29 @@ in {
             "clock" = {
               format = "{:%a, %d %b, %I:%M %p}";
             };
+            "cpu" = {
+              max-length = 10;
+            };
+            "network" = {
+              format = "{ipaddr}";
+              format-disconnected = "???";
+              tooltip-format = "connected to {ifname}. Up {bandwidthUpBits} / Down {bandwidthDownBits}";
+            };
             "tray" = {
               icon-size = 16;
               spacing = 1;
+            };
+            "upower" = {
+              show-icon = false;
+              hide-if-empty = true;
+              tooltip = false;
+            };
+            "idle_inhibitor" = {
+              format = "{status}";
+              format-icons = {
+                activated = "(On)";
+                desactivated = "(Off)";
+              };
             };
           };
         };
@@ -50,35 +70,21 @@ in {
             font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF" ;
             min-height: 25px;
             }
-             window#waybar {
-              background: #161616;
 
-              }
+            .modules-left,
+            .modules-center,
+            .modules-right{
+              background:#262626;
+            }
 
-              .modules-right {
-                padding-left: 5px;
-                border-radius:  15px 0px 0px 0px;
-                margin-top: 2px;
-                background: #262626;
-              }
+            label.module {
+             color:#ffffff;
+            padding:2px;
+            margin-top:2px;
+            }
 
-              .modules-center {
-                padding: 0 15px;
-                margin-top: 2px;
-                border-radius: 15px 15px 0 0 ;
-                background: #262626;
-              }
 
-              .modules-left {
-                border-radius:   0 15px 0 0;
 
-                margin-top: 2px;
-                background: #262626;
-              }
-
-              #tags button:hover{
-              background: #393939;
-              }
 
         '';
       };

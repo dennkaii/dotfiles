@@ -13,18 +13,26 @@ in {
     hm = {
       home.packages = [pkgs.dconf];
       dconf.enable = true; #wiki says gtk may not work without it
+      dconf.settings = {
+        # disable dconf first use warning
+        "ca/desrt/dconf-editor" = {
+          show-warning = false;
+        };
+        # set dark theme for gtk 4
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
 
       gtk = {
         enable = true;
 
         gtk3.extraConfig = {
-          gtk-decoration-layout = ":menu"; # disable title bar buttons
+          # gtk-decoration-layout = ":menu"; # disable title bar buttons
           gtk-application-prefer-dark-theme = 1;
-          gtk-dialogs-use-header = false;
         };
         gtk4.extraConfig = {
           gtk-application-prefer-dark-theme = 1;
-          gtk-dialogs-use-header = false;
         };
 
         #Fonts are already manager by stylix

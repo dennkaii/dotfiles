@@ -9,7 +9,6 @@
 in {
   config = {
     inputs.agenix.url = "github:ryantm/agenix";
-    inputs.nyx.url = "github:NotAShelf/nyx";
 
     osModules = [
       inputs.agenix.nixosModules.default

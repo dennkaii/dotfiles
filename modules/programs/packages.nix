@@ -18,6 +18,7 @@ in {
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"
         "electron-28.3.3"
+        "electron-27.3.11"
       ];
 
       services.gnome.sushi.enable = true;
@@ -26,6 +27,10 @@ in {
     hm = {
       home.packages = with pkgs; [
         libreoffice-qt
+
+        flatpak
+        gnome.gnome-software
+        obsidian
 
         zig
         kdenlive
@@ -36,35 +41,24 @@ in {
 
         ani-cli
 
-        zed-editor
+        vscodium
 
         foliate
 
         #for zig learnign???
         exercism
 
-        # pueue
         btop
-
-        # premid
-
-        ferdium # webcord
 
         upscayl
         way-displays
-
-        # gnome2.libgnome
-        # gnome.gnome-software
 
         beeper
 
         floorp
 
-        # obs-studio
-        # gnome.gnome-boxes
-
         #crashes everytime now???
-        nyxt
+        # nyxt
 
         qutebrowser
 
@@ -73,11 +67,9 @@ in {
 
         # onionshare
         onionshare-gui
-        tldr
 
         element-desktop
 
-        protonmail-desktop
         # cinny-desktop
 
         macchina

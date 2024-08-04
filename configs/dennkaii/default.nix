@@ -58,9 +58,9 @@
     #Default shell
     nu.enable = true;
     # Foot terminal but seems broken
-    foot.enable = false; #wezterm need to move foot inside
     terminals = {
       wezterm.enable = true;
+      foot.enable = false;
     };
     gui = {
       #manga reader
@@ -81,7 +81,7 @@
     # DISABLED FOREVER PROBABLY
     mako.enable = false;
     fish.enable = false;
-    schizofox.enable = true;
+    # schizofox.enable = true;
     rbw.enable = true;
     neovim.enable = false;
     anyrun.enable = false;
@@ -96,6 +96,6 @@
     protonvpn.enable = false;
     podman.enable = false;
 
-    searxng.enable = true;
+    searxng.enable = false;
   };
 }

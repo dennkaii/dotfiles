@@ -5,10 +5,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.programs.foot;
+  cfg = config.programs.terminals.foot;
   inherit (lib) mkEnableOption mkIf;
 in {
-  options.programs.foot = {
+  options.programs.terminals.foot = {
     enable = mkEnableOption "foot";
   };
 
