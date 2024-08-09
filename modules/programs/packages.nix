@@ -19,6 +19,7 @@ in {
         "electron-25.9.0"
         "electron-28.3.3"
         "electron-27.3.11"
+        "freeimage-unstable-2021-11-01"
       ];
 
       services.gnome.sushi.enable = true;
@@ -26,6 +27,10 @@ in {
 
     hm = {
       home.packages = with pkgs; [
+        # pipewire-pavucontrol
+        pwvucontrol
+        # linux-wallpaperengine
+
         libreoffice-qt
 
         flatpak
@@ -33,9 +38,6 @@ in {
         obsidian
 
         zig
-        kdenlive
-
-        inkscape
 
         geogebra6
 
@@ -50,7 +52,6 @@ in {
 
         btop
 
-        upscayl
         way-displays
 
         beeper
@@ -61,10 +62,6 @@ in {
         # nyxt
 
         qutebrowser
-
-        #audio purpouses but i remmeber havinf it installed
-        pavucontrol
-
         # onionshare
         onionshare-gui
 
@@ -81,7 +78,7 @@ in {
 
         oculante
 
-        gnome.nautilus
+        nautilus
 
         tidal-hifi
 

@@ -15,7 +15,7 @@ in {
   config = mkMerge [
     {
       inputs = {
-        hyprland.url = "github:hyprwm/hyprland";
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
         hy3 = {
           url = "github:outfoxxed/hy3";
@@ -75,6 +75,7 @@ in {
                     render_text = false
                     padding = 4
                     rounding = 8
+                    text_center = true
                   }
 
                   autotile {
@@ -97,12 +98,12 @@ in {
             # screensatty = "$satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
           in {
             env = mapAttrsToList (name: value: "${name},${toString value}") {
-              XCURSOR_SIZE = 24;
+              # XCURSOR_SIZE = 24;
               GDK_SCALE = 1.3;
-              WLR_DRM_NO_ATOMIC = 1;
+              # WLR_DRM_NO_ATOMIC = 1;
               XDG_SESION_TYPE = "wayland";
               GDK_BACKEND = "wayland";
-              TERM = "foot";
+              # TERM = "foot";
               NIXOS_OZONE_WL = "1";
             };
 
@@ -116,7 +117,7 @@ in {
               "hypridle"
               # "${swww} init &"
               "${pkgs.wluma}/bin/wluma"
-              "hyprlock"
+              # "hyprlock"
               "foot --server"
               "mako"
               "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store #Stores only text data"
@@ -180,7 +181,6 @@ in {
             };
 
             master = {
-              new_is_master = false;
               new_on_top = false;
               no_gaps_when_only = false;
               orientation = "top";
@@ -214,7 +214,7 @@ in {
             };
 
             input = {
-              follow_mouse = 1;
+              follow_mouse = 0;
               force_no_accel = 1;
 
               kb_layout = "us";
@@ -247,12 +247,11 @@ in {
             bind = [
               #Programs related
               # "$mod, space, exec, anyrun"
-              "$mod, space, exec, walker"
+              "$mod, space, exec, fuzzel"
               # Launches foot with a tmux sesison -> got it from https://discord.com/channels/601130461678272522/1136357112579108904
-              "$mod, return, exec, footclient nu --commands '$env.SHELL = $nu.current-exe; tmux new-session -A -s default'"
+              "$mod, return, exec,wezterm "
               "CTRL,F,exec, floorp "
 
-              "$cmod,F, exec, nyxt"
               "CTRL, D,exec, ferdium"
 
               #screenshot
@@ -340,7 +339,7 @@ in {
             windowrule = [
               "center,^(leagueclientux.exe)$"
               "center,^(league of legends.exe)$"
-              "forceinput,^(league of legends.exe)$"
+              # "forceinput,^(league of legends.exe)$"
               "size 1600 900, ^(leaguecientux.exe)$"
             ];
 

@@ -4,10 +4,9 @@
   lib,
   pkgs,
   ...
-}: let 
+}: let
   cfg = config.programs.rbw;
-  inherit(lib) mkEnableOption mkIf;
-
+  inherit (lib) mkEnableOption mkIf;
 in {
   options.programs.rbw.enable = mkEnableOption "rbw";
 
@@ -18,7 +17,6 @@ in {
         email = "sperezvargas508@gmail.com";
         pinentry = pkgs.pinentry-gnome3;
       };
-      
     };
   };
 }

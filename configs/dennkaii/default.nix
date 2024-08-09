@@ -8,12 +8,13 @@
   };
 
   display = {
-    # hyprland.enable = true;
-    river.enable = true;
+    hyprland.enable = true;
+    # river.enable = true;
     #not used anymore
     sddm.enable = false;
     # for 한굴
     fcitx.enable = true;
+    niri.enable = true;
   };
 
   fonts.enable = true;
@@ -24,6 +25,7 @@
   vm.enable = true;
 
   programs = {
+    _1password.enable = true;
     # packages i was lazy to make a module for
     packages.enable = true;
     #Wigets

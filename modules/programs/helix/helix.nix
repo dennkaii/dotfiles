@@ -13,7 +13,6 @@ in {
 
     home.packages = with pkgs; [
       # nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-langservers-extracted
       nodePackages.prettier
     ];
     programs.helix = {
@@ -32,12 +31,11 @@ in {
             (lib.makeBinPath [
               clang-tools
               markdown-oxide
-              ltex-ls
-              nil
+              # nil
+              nixd
               luajitPackages.lua-lsp
               nodePackages.bash-language-server
-              # nodePackages.vscode-css-languageserver-bin
-              nodePackages.vscode-langservers-extracted
+              # nodePackages.vscode-langservers-extracted
               nodePackages.prettier
               typescript
               nodePackages."@astrojs/language-server"
@@ -48,6 +46,8 @@ in {
               shellcheck
               zig
               zls
+
+              # Not working
               (writeShellScriptBin "helix-wezterm" (builtins.readFile ./helix-wezterm.sh))
               (writeShellScriptBin "helix-fzf" (builtins.readFile ./helix-fzf.sh))
 
@@ -275,6 +275,7 @@ in {
             roots = ["flake.nix"];
             scope = "source.nix";
             file-types = ["nix"];
+            language-servers = ["nixd"];
           }
 
           {
@@ -302,7 +303,6 @@ in {
           (withLangServers (mkPrettier "tsx" "tsx") ["typescript-language-server" "eslint" "emmet-ls"])
           (withLangServers (mkPrettier "javascript" "js") ["typescript-language-server" "eslint" "emmet-ls"])
           (withLangServers (mkPrettier "jsx" "js") ["typescript-language-server" "eslint" "emmet-ls"])
-          (withLangServers (mkPrettier "markdown" "md") ["markdown-oxide" "emmet-ls" "ltex-ls"])
         ];
 
         language-server = {
@@ -334,9 +334,9 @@ in {
             config.documentFormatting = false;
           };
 
-          vscode-langservers-extracted = {
-            command = lib.getExe pkgs.nodePackages.vscode-langservers-extracted;
-          };
+          # vscode-langservers-extracted = {
+          #   command = lib.getExe pkgs.nodePackages.vscode-langservers-extracted;
+          # };
 
           # vscode-css-language-server = {
           #   command = lib.getExe pkgs.nodePackages.vscode-css-languageserver-bin;
@@ -358,9 +358,14 @@ in {
           # conifg.provideFormatter = true;
           # };
 
-          nil = {
-            command = lib.getExe pkgs.nil;
-            config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
+          # nil = {
+          #   command = lib.getExe pkgs.nil;
+          #   config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
+          # };
+
+          nixd = {
+            command = lib.getExe pkgs.nixd;
+            config.nixd.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
           };
         };
       };

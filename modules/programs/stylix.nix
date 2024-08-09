@@ -48,6 +48,12 @@ in {
           };
         };
 
+        cursor = {
+          package = pkgs.phinger-cursors;
+          name = "phinger-cursors";
+          size = 24;
+        };
+
         override = {
           scheme = "Oxocarbon Dark";
           author = "shaunsingh/IBM";
