@@ -7,9 +7,7 @@
   cfg = config.display.river;
 in {
   options.display.river.enable = lib.mkEnableOption "river wm";
-  options.defaults.terminal = lib.mkOption {
-    type = with lib.types; str;
-  };
+
   config = lib.mkIf cfg.enable {
     os = {
       # services.displayManager.sessionPackages = let

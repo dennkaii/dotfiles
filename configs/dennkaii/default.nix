@@ -1,17 +1,27 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   users.main = "dennkaii";
 
-  wallpaper_dir = "/home/${config.users.main}/.nixConfig/wallpapers/sekirowall.png";
+  # need to migrate it to defaults
+  wallpaper_dir = "${toString config.defaults.flake_dir}/wallpapers/sekirowall.png";
 
   defaults = {
     terminal = "wezterm";
+    cursor = {
+      name = "Breeze_Snow";
+      size = 24;
+      pkg = pkgs.kdePackages.breeze;
+    };
   };
 
   display = {
-    hyprland.enable = true;
+    # hyprland.enable = true;
     # river.enable = true;
     #not used anymore
-    sddm.enable = false;
+    sddm.enable = true;
     # for 한굴
     fcitx.enable = true;
     niri.enable = true;
@@ -47,7 +57,7 @@
     #Wallpapaer, lockscreen and idle daemon
     hyprlock.enable = true;
     hypridle.enable = true;
-    hyprpaper.enable = true;
+    hyprpaper.enable = false;
     # Not Being used
     ags.enable = false;
     waybar.enable = true;

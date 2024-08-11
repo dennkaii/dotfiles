@@ -8,7 +8,7 @@
 
   initialSession = {
     user = "${config.users.main}";
-    command = "river";
+    command = "niri-session";
   };
 
   defaultSession = {
@@ -23,7 +23,7 @@
   };
 in {
   os.services.greetd = {
-    enable = true;
+    enable = false;
     vt = 2;
     settings = {
       default_session = defaultSession;

@@ -21,10 +21,10 @@ in {
         displayManager = {
           sddm = {
             enable = true;
-            autoLogin = {
-              enable = true;
-              user = "${config.users.main}";
-            };
+            # autoLogin = {
+            #   enable = true;
+            #   user = "${config.users.main}";
+            # };
           };
         };
       };
