@@ -23,5 +23,3 @@ Dennkaii/
 └───secrets/        (agenix secrets)
 ```
 
-Main Repo here:
-https://app.radicle.xyz/nodes/ash.radicle.garden/rad:zYP8dF6XZAB63rK9qHG7yxeCYnAx
