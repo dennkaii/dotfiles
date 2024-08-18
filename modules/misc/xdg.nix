@@ -4,8 +4,8 @@
   ...
 }: let
   #stolen from https://github.com/linuxmobile/kaku/blob/main/home/software/xdg.nix
-  # browser = ["Schizofox"];
-  browser = ["floorp"];
+  browser = ["Schizofox"];
+  # browser = ["floorp"];
   imageViewer = ["oculante"];
   Terminal = ["org.wezfurlong.wezterm"];
   videoPlayer = ["io.github.celluloid_player.Celluloid"];

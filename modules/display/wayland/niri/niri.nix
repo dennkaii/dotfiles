@@ -27,6 +27,14 @@ in {
       # settings = {
       # };
     };
+    os.xdg.portal = {
+      enable = true;
+
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
+      ];
+    };
     hm.programs.niri = {
       settings = {
         input = {
@@ -67,6 +75,9 @@ in {
           }
           {
             command = ["fnott"];
+          }
+          {
+            command = ["swww-daemon"];
           }
         ];
 
@@ -114,9 +125,15 @@ in {
           mod = "Super";
           ms = "${mod}+Shift";
           mc = "${mod}+Ctrl";
+          sh = spawn "sh" "-c";
+
+          screenarea = "grimblast save area - | satty --filename - ";
+          screenactive = "grimblast save active - | satty --filename - ";
         in {
           "${mod}+Return".action = spawn "${config.defaults.terminal}";
           "${mod}+Space".action = spawn "fuzzel";
+          "${mod}+S".action = sh ''${screenarea}'';
+          "${ms}+S".action = sh ''${screenactive}'';
 
           "${ms}+Q".action = close-window;
           "${mc}+H".action = move-column-left;
@@ -124,15 +141,18 @@ in {
           "${mc}+K".action = move-window-up-or-to-workspace-up;
           "${mc}+L".action = move-column-right;
 
-          # "${ms}+E".action = quit;
+          "${ms}+E".action = quit;
 
           "${ms}+F".action = maximize-column;
           "${mod}+H".action = focus-column-left;
-          "${mod}+J".action = focus-window-or-monitor-down;
-          "${mod}+K".action = focus-window-or-monitor-up;
+          "${mod}+J".action = focus-window-down;
+          "${mod}+K".action = focus-window-up;
           "${mod}+L".action = focus-column-right;
           "${ms}+Plus".action = set-column-width "+10";
           "${ms}+Minus".action = set-column-width "-10";
+
+          "${ms}+comma".action = consume-or-expel-window-left;
+          "${ms}+period".action = consume-or-expel-window-right;
 
           #workspace movement
           "${mod}+1".action = focus-workspace 1;
@@ -160,17 +180,21 @@ in {
 
     hm.home.packages = with pkgs; [
       swww
+      satty
+      grimblast
     ];
-    hm.systemd.user.services = {
-      swww = {
-        Unit = {
-          PartOf = "graphical-serssion.target";
-          After = "graphical-serssion.target";
-          Requisite = "graphical-serssion.target";
-        };
-        Service = {
-          ExecSrart = "swww-daemon";
-          Restart = "on-failure";
+    os.systemd.user = {
+      services = {
+        swww = {
+          enable = true;
+          wantedBy = ["niri.service"];
+          wants = ["graphical-session.target"];
+          after = ["graphical-session.target"];
+          serviceConfig = {
+            ExecStart = "${pkgs.swww}/bin/swww-daemon";
+            Restart = "on-failure";
+            RestartSec = 1;
+          };
         };
       };
     };

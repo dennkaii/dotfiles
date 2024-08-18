@@ -6,9 +6,11 @@
 }: let
   inherit (lib) getExe concatStringsSep;
 
-  initialSession = {
+  initialSession = let
+    niri-session = "run/current-system/sw/bin/niri-session";
+  in {
     user = "${config.users.main}";
-    command = "niri-session";
+    command = "${niri-session}";
   };
 
   defaultSession = {
@@ -23,7 +25,7 @@
   };
 in {
   os.services.greetd = {
-    enable = false;
+    enable = true;
     vt = 2;
     settings = {
       default_session = defaultSession;

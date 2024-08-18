@@ -42,6 +42,8 @@ in {
             "wheel"
             "video"
             "networkmanager"
+            "audio"
+            "pipewire"
           ]
           ++ cfg.groups;
       };

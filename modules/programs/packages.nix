@@ -28,18 +28,27 @@ in {
     hm = {
       home.packages = with pkgs; [
         # pipewire-pavucontrol
-        pwvucontrol
+        # pwvucontrol
         # linux-wallpaperengine
+        psmisc
+        alsa-utils
+        # fwupd
 
         libreoffice-qt
 
         flatpak
         gnome.gnome-software
         obsidian
+        pavucontrol
 
         zig
 
         geogebra6
+        clipse
+
+        # copy poste??
+        wl-clipboard
+        stremio
 
         ani-cli
 
@@ -56,7 +65,8 @@ in {
 
         beeper
 
-        floorp
+        #Crashing too much
+        # floorp
 
         #crashes everytime now???
         # nyxt

@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     hm = {
       programs.tmux = {
-        enable = true;
+        enable = false;
         shell = "${pkgs.nushell}/bin/nu";
         terminal = "tmux-256color";
         historyLimit = 100000;

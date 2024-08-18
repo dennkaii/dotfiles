@@ -8,7 +8,7 @@
 }: {
   osModules = [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.dell-inspiron-14-5420
+    # inputs.nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
 
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -17,6 +17,10 @@
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     nixpkgs.config.allowUnfree = true;
+
+    hardware.firmware = [
+      pkgs.sof-firmware
+    ];
 
     time.timeZone = "America/New_York";
     networking.hostName = "Aethyr";
@@ -62,7 +66,7 @@
           intel-media-driver # LIBVA_DRIVER_NAME=iHD
           vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
           vaapiVdpau
-
+          vpl-gpu-rt
           libvdpau-va-gl
         ];
       };
@@ -70,7 +74,7 @@
 
     security.rtkit.enable = true;
 
-    hardware.pulseaudio.enable = lib.mkForce false; #disable pulseAudio
+    hardware.pulseaudio.enable = lib.mkForce true; #disable pulseAudio
 
     services = {
       thermald.enable = true;
@@ -80,15 +84,19 @@
       udisks2.enable = true;
       tlp.enable = true;
       blueman.enable = true;
+      fwupd.enable = true;
 
-      pipewire = {
-        enable = true;
-        wireplumber.enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-      };
+      gnome.gnome-keyring.enable = true;
+
+      # pipewire = {
+      #   enable = true;
+      #   audio.enable = true;
+      #   alsa.enable = true;
+      #   alsa.support32Bit = true;
+      #   pulse.enable = true;
+      #   wireplumber.enable = true;
+      #   jack.enable = true;
+      # };
 
       #auto loign for user
       # getty.autologinUser = "${config.users.main}";

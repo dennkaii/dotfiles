@@ -19,9 +19,9 @@
 
   display = {
     # hyprland.enable = true;
-    # river.enable = true;
+    river.enable = true;
     #not used anymore
-    sddm.enable = true;
+    # sddm.enable = true;
     # for 한굴
     fcitx.enable = true;
     niri.enable = true;
@@ -69,6 +69,8 @@
     obs.enable = false;
     #Default shell
     nu.enable = true;
+    #browser
+    schizofox.enable = true;
     # Foot terminal but seems broken
     terminals = {
       wezterm.enable = true;
@@ -93,7 +95,6 @@
     # DISABLED FOREVER PROBABLY
     mako.enable = false;
     fish.enable = false;
-    # schizofox.enable = true;
     rbw.enable = true;
     neovim.enable = false;
     anyrun.enable = false;

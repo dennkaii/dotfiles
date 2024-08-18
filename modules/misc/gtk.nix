@@ -34,6 +34,8 @@ in {
         gtk4.extraConfig = {
           gtk-application-prefer-dark-theme = 1;
         };
+        theme.package = pkgs.gnome-themes-extra;
+        theme.name = "Adwaita-dark";
 
         #Fonts are already manager by stylix
 
